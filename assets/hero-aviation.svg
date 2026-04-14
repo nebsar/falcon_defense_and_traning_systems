@@ -1,0 +1,23 @@
+<svg width="100%" height="100%" viewBox="0 0 720 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7dd3fc" />
+      <stop offset="100%" stop-color="#0ea5e9" />
+    </linearGradient>
+  </defs>
+  <rect width="720" height="560" rx="48" fill="#07101c" />
+  <circle cx="180" cy="160" r="110" fill="rgba(125, 211, 252, 0.1)" />
+  <path d="M120 210C122 187 138 175 161 166C204 150 251 141 296 140C364 138 420 164 464 194C500 219 528 251 553 287" stroke="#7dd3fc" stroke-width="6" stroke-linecap="round" />
+  <path d="M467 204L486 243L510 235" stroke="#7dd3fc" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M320 400L370 300L405 315L400 270L420 260L455 315L515 355L520 388L430 382L407 415L372 410L340 433Z" fill="url(#heroGrad)" stroke="#7dd3fc" stroke-width="5" />
+  <rect x="242" y="192" width="190" height="90" rx="20" fill="rgba(255,255,255,0.08)" stroke="rgba(125,211,252,0.25)" />
+  <circle cx="470" cy="108" r="20" fill="#38bdf8" opacity="0.8" />
+  <circle cx="520" cy="140" r="14" fill="#7dd3fc" opacity="0.8" />
+  <path d="M260 220H420" stroke="#dbeafe" stroke-width="4" stroke-linecap="round" />
+  <path d="M260 250H380" stroke="#dbeafe" stroke-width="4" stroke-linecap="round" />
+  <path d="M260 280H340" stroke="#dbeafe" stroke-width="4" stroke-linecap="round" />
+  <rect x="90" y="360" width="220" height="140" rx="28" fill="rgba(255,255,255,0.04)" stroke="rgba(125,211,252,0.2)" />
+  <path d="M140 390H190" stroke="#7dd3fc" stroke-width="8" stroke-linecap="round" />
+  <path d="M140 430H240" stroke="#7dd3fc" stroke-width="8" stroke-linecap="round" />
+  <path d="M140 470H210" stroke="#7dd3fc" stroke-width="8" stroke-linecap="round" />
+</svg>
