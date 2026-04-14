@@ -19,7 +19,7 @@ openMenuButton.addEventListener('click', openMenu);
 closeMenuButton.addEventListener('click', closeMenu);
 menuBackdrop.addEventListener('click', closeMenu);
 
-document.querySelectorAll('.side-nav a, .nav-links a').forEach((link) => {
+document.querySelectorAll('.side-nav a, .nav-links a, .bottom-nav a').forEach((link) => {
   link.addEventListener('click', () => {
     closeMenu();
   });
