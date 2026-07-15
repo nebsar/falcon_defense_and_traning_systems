@@ -295,12 +295,15 @@
 
     /* ── SHIELD LOGO ── */
     .shield-wrap {
-      margin: 0 auto 28px;
-      width: 130px;
-      height: 130px;
+      margin: 0 auto 36px;
+      width: 300px;
+      height: auto;
       position: relative;
-      filter: drop-shadow(0 0 30px rgba(0, 160, 255, 0.6));
+      filter: drop-shadow(0 0 40px rgba(0, 160, 255, 0.7));
       animation: shieldPulse 3s ease-in-out infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     @keyframes shieldPulse {
@@ -317,7 +320,8 @@
 
     .shield-svg {
       width: 100%;
-      height: 100%;
+      height: auto;
+      display: block;
     }
 
     .brand-name {
@@ -1241,9 +1245,6 @@
         <img src="assets/Logo_w.svg" alt="Falkon Aviation and Defence Technologies" class="shield-svg">
       </div>
 
-      <div class="brand-name">FALKON</div>
-      <div class="brand-sub">Aviation & Defence Technologies</div>
-      <div class="divider-line"></div>
       <h1 class="hero-tagline">Advanced Training &<br><em>Intelligent Defence Solutions</em></h1>
 
       <div class="hero-buttons">
