@@ -177,7 +177,6 @@
       z-index: 100;
       display: flex;
       align-items: center;
-      justify-content: space-between;
       padding: 18px 60px;
       background: transparent;
       backdrop-filter: none;
@@ -214,6 +213,9 @@
     }
 
     .nav-links {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       gap: 36px;
       list-style: none;
