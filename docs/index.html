@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Falkon Aviation and Defence Technologies</title>
-  <meta name="description" content="Falkon Aviation and Defence Technologies — Advanced pilot training, drone/UAV systems, C4ISR command systems and mission-critical defence solutions.">
+  <meta name="description"
+    content="Falkon Aviation and Defence Technologies — Advanced pilot training, drone/UAV systems, C4ISR command systems and mission-critical defence solutions.">
   <link rel="icon" type="image/svg+xml" href="assets/Logo_w.svg">
   <link rel="shortcut icon" href="assets/Logo_w.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
   <style>
     @font-face {
       font-family: 'FalkonFont';
       src: url('assets/fonts/FalkonFont-Regular.woff2') format('woff2'),
-           url('assets/fonts/FalkonFont-Regular.otf') format('opentype');
+        url('assets/fonts/FalkonFont-Regular.otf') format('opentype');
       font-weight: normal;
       font-style: normal;
       font-display: swap;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --blue-core: #00aaff;
@@ -30,12 +40,14 @@
       --dark: #040c14;
       --dark2: #071520;
       --dark3: #0a1e2e;
-      --grid-line: rgba(0,170,255,0.08);
-      --glow: 0 0 20px rgba(0,170,255,0.6), 0 0 60px rgba(0,170,255,0.2);
-      --glow-sm: 0 0 10px rgba(0,170,255,0.5);
+      --grid-line: rgba(0, 170, 255, 0.08);
+      --glow: 0 0 20px rgba(0, 170, 255, 0.6), 0 0 60px rgba(0, 170, 255, 0.2);
+      --glow-sm: 0 0 10px rgba(0, 170, 255, 0.5);
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--dark);
@@ -54,7 +66,7 @@
       justify-content: center;
       overflow: hidden;
       background:
-        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,100,180,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0, 100, 180, 0.18) 0%, transparent 70%),
         linear-gradient(180deg, #040c14 0%, #071a28 60%, #040c14 100%);
     }
 
@@ -72,8 +84,13 @@
     }
 
     @keyframes gridScroll {
-      0% { background-position: 0 0, 0 0; }
-      100% { background-position: 0 60px, 60px 0; }
+      0% {
+        background-position: 0 0, 0 0;
+      }
+
+      100% {
+        background-position: 0 60px, 60px 0;
+      }
     }
 
     /* Radar ring */
@@ -85,23 +102,25 @@
       width: 700px;
       height: 700px;
       border-radius: 50%;
-      border: 1px solid rgba(0,170,255,0.12);
-      box-shadow: 0 0 0 80px rgba(0,20,50,0.2), inset 0 0 80px rgba(0,100,200,0.06);
+      border: 1px solid rgba(0, 170, 255, 0.12);
+      box-shadow: 0 0 0 80px rgba(0, 20, 50, 0.2), inset 0 0 80px rgba(0, 100, 200, 0.06);
       pointer-events: none;
     }
+
     .radar-ring::before {
       content: '';
       position: absolute;
       inset: 30px;
       border-radius: 50%;
-      border: 1px solid rgba(0,170,255,0.1);
+      border: 1px solid rgba(0, 170, 255, 0.1);
     }
+
     .radar-ring::after {
       content: '';
       position: absolute;
       inset: 80px;
       border-radius: 50%;
-      border: 1px solid rgba(0,170,255,0.07);
+      border: 1px solid rgba(0, 170, 255, 0.07);
     }
 
     /* Radar sweep */
@@ -116,6 +135,7 @@
       overflow: hidden;
       pointer-events: none;
     }
+
     .radar-sweep::after {
       content: '';
       position: absolute;
@@ -124,13 +144,19 @@
       width: 50%;
       height: 2px;
       transform-origin: 0 50%;
-      background: linear-gradient(90deg, rgba(0,200,255,0.9), transparent);
-      box-shadow: 0 0 8px rgba(0,200,255,0.8);
+      background: linear-gradient(90deg, rgba(0, 200, 255, 0.9), transparent);
+      box-shadow: 0 0 8px rgba(0, 200, 255, 0.8);
       animation: sweep 4s linear infinite;
     }
+
     @keyframes sweep {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     /* Noise texture overlay */
@@ -145,15 +171,17 @@
     /* ── NAV ── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 18px 60px;
-      background: rgba(4,12,20,0.7);
+      background: rgba(4, 12, 20, 0.7);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0,170,255,0.12);
+      border-bottom: 1px solid rgba(0, 170, 255, 0.12);
     }
 
     .nav-logo {
@@ -176,6 +204,7 @@
       color: var(--white);
       line-height: 1.1;
     }
+
     .nav-logo-text span {
       display: block;
       font-size: 8px;
@@ -201,17 +230,26 @@
       transition: color 0.2s;
       position: relative;
     }
+
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -4px; left: 0; right: 0;
+      bottom: -4px;
+      left: 0;
+      right: 0;
       height: 1px;
       background: var(--blue-core);
       transform: scaleX(0);
       transition: transform 0.3s;
     }
-    .nav-links a:hover { color: var(--blue-bright); }
-    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-links a:hover {
+      color: var(--blue-bright);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
 
     .nav-cta {
       font-family: 'FalkonFont', monospace;
@@ -226,6 +264,7 @@
       transition: all 0.3s;
       clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
     }
+
     .nav-cta:hover {
       background: var(--blue-core);
       color: var(--dark);
@@ -243,8 +282,15 @@
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ── SHIELD LOGO ── */
@@ -253,15 +299,26 @@
       width: 130px;
       height: 130px;
       position: relative;
-      filter: drop-shadow(0 0 30px rgba(0,160,255,0.6));
+      filter: drop-shadow(0 0 30px rgba(0, 160, 255, 0.6));
       animation: shieldPulse 3s ease-in-out infinite;
     }
+
     @keyframes shieldPulse {
-      0%, 100% { filter: drop-shadow(0 0 20px rgba(0,160,255,0.5)); }
-      50% { filter: drop-shadow(0 0 40px rgba(0,200,255,0.9)); }
+
+      0%,
+      100% {
+        filter: drop-shadow(0 0 20px rgba(0, 160, 255, 0.5));
+      }
+
+      50% {
+        filter: drop-shadow(0 0 40px rgba(0, 200, 255, 0.9));
+      }
     }
 
-    .shield-svg { width: 100%; height: 100%; }
+    .shield-svg {
+      width: 100%;
+      height: 100%;
+    }
 
     .brand-name {
       font-family: 'FalkonFont', monospace;
@@ -270,7 +327,7 @@
       letter-spacing: 10px;
       text-transform: uppercase;
       color: var(--white);
-      text-shadow: 0 0 40px rgba(0,170,255,0.5), 0 0 80px rgba(0,100,200,0.3);
+      text-shadow: 0 0 40px rgba(0, 170, 255, 0.5), 0 0 80px rgba(0, 100, 200, 0.3);
       line-height: 1;
       margin-bottom: 6px;
     }
@@ -332,6 +389,7 @@
       transition: all 0.3s;
       box-shadow: var(--glow-sm);
     }
+
     .btn-primary:hover {
       box-shadow: var(--glow);
       transform: translateY(-2px);
@@ -347,16 +405,17 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--blue-core);
-      border: 1px solid rgba(0,170,255,0.4);
+      border: 1px solid rgba(0, 170, 255, 0.4);
       padding: 16px 36px;
       text-decoration: none;
       clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
       transition: all 0.3s;
-      background: rgba(0,100,180,0.1);
+      background: rgba(0, 100, 180, 0.1);
     }
+
     .btn-outline:hover {
       border-color: var(--blue-core);
-      background: rgba(0,100,180,0.2);
+      background: rgba(0, 100, 180, 0.2);
       box-shadow: var(--glow-sm);
       transform: translateY(-2px);
     }
@@ -364,13 +423,15 @@
     /* ── STATUS BAR ── */
     .status-bar {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       display: flex;
       justify-content: center;
       gap: 60px;
       padding: 18px 40px;
-      background: rgba(4,12,20,0.8);
-      border-top: 1px solid rgba(0,170,255,0.12);
+      background: rgba(4, 12, 20, 0.8);
+      border-top: 1px solid rgba(0, 170, 255, 0.12);
       backdrop-filter: blur(8px);
     }
 
@@ -392,19 +453,35 @@
       box-shadow: 0 0 8px var(--blue-core);
       animation: blink 2s ease-in-out infinite;
     }
-    .status-dot.green { background: #00ff88; box-shadow: 0 0 8px #00ff88; }
-    .status-dot.amber { background: #ffaa00; box-shadow: 0 0 8px #ffaa00; animation-delay: 0.5s; }
+
+    .status-dot.green {
+      background: #00ff88;
+      box-shadow: 0 0 8px #00ff88;
+    }
+
+    .status-dot.amber {
+      background: #ffaa00;
+      box-shadow: 0 0 8px #ffaa00;
+      animation-delay: 0.5s;
+    }
 
     @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
     }
 
     /* ── CAPABILITIES STRIP ── */
     .capabilities {
       background: var(--dark2);
-      border-top: 1px solid rgba(0,170,255,0.15);
-      border-bottom: 1px solid rgba(0,170,255,0.15);
+      border-top: 1px solid rgba(0, 170, 255, 0.15);
+      border-bottom: 1px solid rgba(0, 170, 255, 0.15);
       padding: 0;
       overflow: hidden;
     }
@@ -421,30 +498,42 @@
       justify-content: center;
       gap: 14px;
       padding: 40px 20px;
-      border-right: 1px solid rgba(0,170,255,0.1);
+      border-right: 1px solid rgba(0, 170, 255, 0.1);
       text-align: center;
       position: relative;
       transition: background 0.3s;
       cursor: default;
     }
-    .cap-item:last-child { border-right: none; }
-    .cap-item:hover { background: rgba(0,100,180,0.08); }
-    .cap-item:hover .cap-icon { box-shadow: var(--glow); }
+
+    .cap-item:last-child {
+      border-right: none;
+    }
+
+    .cap-item:hover {
+      background: rgba(0, 100, 180, 0.08);
+    }
+
+    .cap-item:hover .cap-icon {
+      box-shadow: var(--glow);
+    }
 
     .cap-icon {
       width: 60px;
       height: 60px;
-      border: 1px solid rgba(0,170,255,0.3);
+      border: 1px solid rgba(0, 170, 255, 0.3);
       border-radius: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0,80,150,0.15);
+      background: rgba(0, 80, 150, 0.15);
       transition: box-shadow 0.3s;
       clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
     }
 
-    .cap-icon svg { width: 28px; height: 28px; }
+    .cap-icon svg {
+      width: 28px;
+      height: 28px;
+    }
 
     .cap-label {
       font-family: 'Rajdhani', sans-serif;
@@ -457,7 +546,9 @@
     }
 
     /* ── SECTIONS ── */
-    section { padding: 100px 60px; }
+    section {
+      padding: 100px 60px;
+    }
 
     .section-header {
       text-align: center;
@@ -480,7 +571,7 @@
       letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--white);
-      text-shadow: 0 0 30px rgba(0,170,255,0.3);
+      text-shadow: 0 0 30px rgba(0, 170, 255, 0.3);
     }
 
     .section-rule {
@@ -491,7 +582,9 @@
     }
 
     /* ── SOLUTIONS ── */
-    .solutions { background: var(--dark); }
+    .solutions {
+      background: var(--dark);
+    }
 
     .solutions-grid {
       display: grid;
@@ -507,24 +600,33 @@
       position: relative;
       overflow: hidden;
       transition: transform 0.3s;
-      border: 1px solid rgba(0,170,255,0.06);
+      border: 1px solid rgba(0, 170, 255, 0.06);
     }
+
     .sol-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--blue-core), transparent);
       opacity: 0;
       transition: opacity 0.3s;
     }
-    .sol-card:hover { transform: translateY(-4px); }
-    .sol-card:hover::before { opacity: 1; }
+
+    .sol-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .sol-card:hover::before {
+      opacity: 1;
+    }
 
     .sol-number {
       font-family: 'Share Tech Mono', monospace;
       font-size: 11px;
-      color: rgba(0,170,255,0.4);
+      color: rgba(0, 170, 255, 0.4);
       letter-spacing: 2px;
       margin-bottom: 20px;
     }
@@ -551,7 +653,7 @@
       font-family: 'Rajdhani', sans-serif;
       font-size: 15px;
       font-weight: 400;
-      color: rgba(180,210,230,0.7);
+      color: rgba(180, 210, 230, 0.7);
       line-height: 1.6;
     }
 
@@ -568,13 +670,16 @@
       text-transform: uppercase;
       transition: gap 0.2s;
     }
-    .sol-link:hover { gap: 14px; }
+
+    .sol-link:hover {
+      gap: 14px;
+    }
 
     /* ── STATS ── */
     .stats {
       background: var(--dark2);
-      border-top: 1px solid rgba(0,170,255,0.1);
-      border-bottom: 1px solid rgba(0,170,255,0.1);
+      border-top: 1px solid rgba(0, 170, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 170, 255, 0.1);
       padding: 80px 60px;
     }
 
@@ -607,7 +712,9 @@
     }
 
     /* ── TRAINING ── */
-    .training { background: var(--dark); }
+    .training {
+      background: var(--dark);
+    }
 
     .training-inner {
       display: grid;
@@ -621,7 +728,7 @@
     .training-visual {
       position: relative;
       height: 420px;
-      border: 1px solid rgba(0,170,255,0.15);
+      border: 1px solid rgba(0, 170, 255, 0.15);
       background: var(--dark3);
       overflow: hidden;
     }
@@ -640,7 +747,7 @@
       justify-content: space-between;
       font-family: 'Share Tech Mono', monospace;
       font-size: 10px;
-      color: rgba(0,170,255,0.6);
+      color: rgba(0, 170, 255, 0.6);
       letter-spacing: 1px;
     }
 
@@ -656,31 +763,52 @@
       height: 100px;
       position: relative;
     }
-    .crosshair::before, .crosshair::after {
+
+    .crosshair::before,
+    .crosshair::after {
       content: '';
       position: absolute;
       background: var(--blue-core);
     }
-    .crosshair::before { width: 100%; height: 1px; top: 50%; left: 0; }
-    .crosshair::after { width: 1px; height: 100%; left: 50%; top: 0; }
+
+    .crosshair::before {
+      width: 100%;
+      height: 1px;
+      top: 50%;
+      left: 0;
+    }
+
+    .crosshair::after {
+      width: 1px;
+      height: 100%;
+      left: 50%;
+      top: 0;
+    }
 
     .crosshair-ring {
       position: absolute;
       inset: 10px;
       border-radius: 50%;
-      border: 1px solid rgba(0,170,255,0.4);
+      border: 1px solid rgba(0, 170, 255, 0.4);
       animation: rotate 8s linear infinite;
     }
+
     .crosshair-ring-2 {
       position: absolute;
       inset: 25px;
       border-radius: 50%;
-      border: 1px dashed rgba(0,170,255,0.2);
+      border: 1px dashed rgba(0, 170, 255, 0.2);
       animation: rotate 4s linear infinite reverse;
     }
+
     @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     .hud-bottom {
@@ -688,16 +816,19 @@
       justify-content: space-between;
       font-family: 'Share Tech Mono', monospace;
       font-size: 10px;
-      color: rgba(0,170,255,0.6);
+      color: rgba(0, 170, 255, 0.6);
       letter-spacing: 1px;
     }
 
     .hud-bar {
       position: absolute;
-      bottom: 60px; left: 20px; right: 20px;
+      bottom: 60px;
+      left: 20px;
+      right: 20px;
       height: 2px;
-      background: rgba(0,170,255,0.15);
+      background: rgba(0, 170, 255, 0.15);
     }
+
     .hud-bar-fill {
       height: 100%;
       width: 73%;
@@ -710,13 +841,11 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.06) 2px,
-        rgba(0,0,0,0.06) 4px
-      );
+      background: repeating-linear-gradient(0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.06) 2px,
+          rgba(0, 0, 0, 0.06) 4px);
       pointer-events: none;
     }
 
@@ -734,7 +863,7 @@
     .training-content p {
       font-family: 'Rajdhani', sans-serif;
       font-size: 16px;
-      color: rgba(180,210,230,0.7);
+      color: rgba(180, 210, 230, 0.7);
       line-height: 1.7;
       margin-bottom: 32px;
     }
@@ -771,7 +900,7 @@
     .contact {
       background: var(--dark2);
       text-align: center;
-      border-top: 1px solid rgba(0,170,255,0.1);
+      border-top: 1px solid rgba(0, 170, 255, 0.1);
     }
 
     .contact-grid {
@@ -784,11 +913,14 @@
 
     .contact-card {
       padding: 30px;
-      border: 1px solid rgba(0,170,255,0.1);
-      background: rgba(0,50,100,0.08);
+      border: 1px solid rgba(0, 170, 255, 0.1);
+      background: rgba(0, 50, 100, 0.08);
       transition: border-color 0.3s;
     }
-    .contact-card:hover { border-color: rgba(0,170,255,0.3); }
+
+    .contact-card:hover {
+      border-color: rgba(0, 170, 255, 0.3);
+    }
 
     .contact-card-label {
       font-family: 'Share Tech Mono', monospace;
@@ -809,7 +941,7 @@
     /* ── FOOTER ── */
     footer {
       background: var(--dark);
-      border-top: 1px solid rgba(0,170,255,0.1);
+      border-top: 1px solid rgba(0, 170, 255, 0.1);
       padding: 30px 60px;
       display: flex;
       align-items: center;
@@ -819,7 +951,7 @@
     .footer-copy {
       font-family: 'Share Tech Mono', monospace;
       font-size: 11px;
-      color: rgba(120,160,190,0.5);
+      color: rgba(120, 160, 190, 0.5);
       letter-spacing: 1px;
     }
 
@@ -832,12 +964,15 @@
       font-family: 'Share Tech Mono', monospace;
       font-size: 10px;
       letter-spacing: 2px;
-      color: rgba(120,160,190,0.5);
+      color: rgba(120, 160, 190, 0.5);
       text-decoration: none;
       text-transform: uppercase;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--blue-core); }
+
+    .footer-links a:hover {
+      color: var(--blue-core);
+    }
 
     /* ── HAMBURGER BUTTON ── */
     .hamburger-button {
@@ -848,11 +983,12 @@
       width: 40px;
       height: 40px;
       padding: 8px;
-      background: rgba(0,170,255,0.08);
-      border: 1px solid rgba(0,170,255,0.2);
+      background: rgba(0, 170, 255, 0.08);
+      border: 1px solid rgba(0, 170, 255, 0.2);
       cursor: pointer;
       clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
     }
+
     .hamburger-button span {
       display: block;
       width: 100%;
@@ -865,11 +1001,12 @@
     /* ── SIDE MENU ── */
     #sideMenu {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: min(280px, 85vw);
       height: 100vh;
       background: rgba(4, 12, 20, 0.98);
-      border-right: 1px solid rgba(0,170,255,0.15);
+      border-right: 1px solid rgba(0, 170, 255, 0.15);
       backdrop-filter: blur(20px);
       transform: translateX(-110%);
       transition: transform 0.3s ease;
@@ -878,15 +1015,18 @@
       flex-direction: column;
       padding: 24px;
     }
+
     #sideMenu.open {
       transform: translateX(0);
     }
+
     .side-menu-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 40px;
     }
+
     .side-menu-logo {
       font-family: 'FalkonFont', monospace;
       font-size: 14px;
@@ -894,6 +1034,7 @@
       letter-spacing: 3px;
       color: var(--white);
     }
+
     .side-menu-logo span {
       display: block;
       font-size: 8px;
@@ -902,11 +1043,12 @@
       font-weight: 400;
       margin-top: 2px;
     }
+
     .side-menu-close {
       width: 34px;
       height: 34px;
-      background: rgba(0,170,255,0.08);
-      border: 1px solid rgba(0,170,255,0.2);
+      background: rgba(0, 170, 255, 0.08);
+      border: 1px solid rgba(0, 170, 255, 0.2);
       color: var(--steel);
       font-size: 18px;
       cursor: pointer;
@@ -917,15 +1059,18 @@
       clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
       transition: all 0.2s;
     }
+
     .side-menu-close:hover {
-      background: rgba(0,170,255,0.2);
+      background: rgba(0, 170, 255, 0.2);
       color: var(--white);
     }
+
     .side-nav {
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
+
     .side-nav a {
       font-family: 'Rajdhani', sans-serif;
       font-size: 14px;
@@ -938,16 +1083,19 @@
       border-left: 2px solid transparent;
       transition: all 0.2s;
     }
+
     .side-nav a:hover {
       color: var(--blue-bright);
       border-left-color: var(--blue-core);
-      background: rgba(0,170,255,0.06);
+      background: rgba(0, 170, 255, 0.06);
     }
+
     .side-menu-cta {
       margin-top: auto;
       padding-top: 24px;
-      border-top: 1px solid rgba(0,170,255,0.12);
+      border-top: 1px solid rgba(0, 170, 255, 0.12);
     }
+
     .side-menu-cta a {
       display: block;
       text-align: center;
@@ -963,6 +1111,7 @@
       clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
       transition: all 0.3s;
     }
+
     .side-menu-cta a:hover {
       box-shadow: var(--glow-sm);
     }
@@ -978,6 +1127,7 @@
       transition: opacity 0.3s ease, visibility 0.3s ease;
       z-index: 199;
     }
+
     #menuBackdrop.open {
       opacity: 1;
       visibility: visible;
@@ -985,342 +1135,399 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      nav { padding: 16px 24px; }
-      .nav-links { display: none; }
-      .hamburger-button { display: flex; }
-      section { padding: 70px 24px; }
-      .cap-grid { grid-template-columns: repeat(2, 1fr); }
-      .solutions-grid { grid-template-columns: 1fr; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .training-inner { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 16px; text-align: center; }
-      .status-bar { display: none; }
+      nav {
+        padding: 16px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger-button {
+        display: flex;
+      }
+
+      section {
+        padding: 70px 24px;
+      }
+
+      .cap-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .solutions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .training-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .status-bar {
+        display: none;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <img src="assets/Logo_w.svg" alt="Falkon Aviation and Defence Technologies" class="nav-logo-icon">
-  </a>
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="assets/Logo_w.svg" alt="Falkon Aviation and Defence Technologies" class="nav-logo-icon">
+    </a>
 
-  <ul class="nav-links">
-    <li><a href="#solutions">Solutions</a></li>
-    <li><a href="#training">Training</a></li>
-    <li><a href="#capabilities">Systems</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+    <ul class="nav-links">
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#training">Training</a></li>
+      <li><a href="#capabilities">Systems</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
 
-  <a href="#contact" class="nav-cta">Request Briefing</a>
+    <a href="#contact" class="nav-cta">Request Briefing</a>
 
-  <button class="hamburger-button" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-</nav>
-
-<!-- SIDE MENU -->
-<div id="sideMenu" aria-hidden="true" role="dialog" aria-label="Navigation menu">
-  <div class="side-menu-header">
-    <div class="side-menu-logo">
-      <img src="assets/Logo_w.svg" alt="Falkon Aviation and Defence Technologies" style="height:48px; width:auto;">
-    </div>
-    <button class="side-menu-close" aria-label="Close menu">&#x2715;</button>
-  </div>
-  <nav class="side-nav">
-    <a href="#solutions">Solutions</a>
-    <a href="#training">Training</a>
-    <a href="#capabilities">Systems</a>
-    <a href="#contact">Contact</a>
+    <button class="hamburger-button" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
-  <div class="side-menu-cta">
-    <a href="#contact">Request Briefing</a>
-  </div>
-</div>
 
-<!-- BACKDROP -->
-<div id="menuBackdrop"></div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="noise"></div>
-  <div class="radar-ring"></div>
-  <div class="radar-sweep"></div>
-
-  <div class="hero-content">
-    <div class="shield-wrap">
-      <img src="assets/Logo_w.svg" alt="Falkon Aviation and Defence Technologies" class="shield-svg">
-    </div>
-
-    <div class="brand-name">FALKON</div>
-    <div class="brand-sub">Aviation &amp; Defence Technologies</div>
-    <div class="divider-line"></div>
-    <h1 class="hero-tagline">Advanced Training &<br><em>Intelligent Defence Solutions</em></h1>
-
-    <div class="hero-buttons">
-      <a href="#solutions" class="btn-primary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>
-        Explore Systems
-      </a>
-      <a href="#contact" class="btn-outline">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.18 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-        Request Briefing
-      </a>
-    </div>
-  </div>
-
-  <div class="status-bar">
-    <div class="status-item"><div class="status-dot green"></div>SYSTEMS OPERATIONAL</div>
-    <div class="status-item"><div class="status-dot"></div>SECURE CHANNEL ACTIVE</div>
-    <div class="status-item"><div class="status-dot amber"></div>CLEARANCE LEVEL: RESTRICTED</div>
-    <div class="status-item"><div class="status-dot green"></div>GLOBAL COVERAGE: 47 NATIONS</div>
-  </div>
-</section>
-
-<!-- CAPABILITIES STRIP -->
-<div class="capabilities" id="capabilities">
-  <div class="cap-grid">
-    <div class="cap-item">
-      <div class="cap-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#00aaff" stroke-width="1.5">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          <path d="M9 12l2 2 4-4"/>
-        </svg>
+  <!-- SIDE MENU -->
+  <div id="sideMenu" aria-hidden="true" role="dialog" aria-label="Navigation menu">
+    <div class="side-menu-header">
+      <div class="side-menu-logo">
+        <img src="assets/Logo_w.svg" alt="Falkon Aviation and Defence Technologies" style="height:48px; width:auto;">
       </div>
-      <div class="cap-label">Civilian & Military<br>Pilot Training</div>
+      <button class="side-menu-close" aria-label="Close menu">&#x2715;</button>
     </div>
-    <div class="cap-item">
-      <div class="cap-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#00aaff" stroke-width="1.5">
-          <path d="M3 17l2-8 7 3 7-3 2 8"/>
-          <circle cx="12" cy="8" r="2"/>
-          <path d="M5 17h14"/>
-        </svg>
+    <nav class="side-nav">
+      <a href="#solutions">Solutions</a>
+      <a href="#training">Training</a>
+      <a href="#capabilities">Systems</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="side-menu-cta">
+      <a href="#contact">Request Briefing</a>
+    </div>
+  </div>
+
+  <!-- BACKDROP -->
+  <div id="menuBackdrop"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="noise"></div>
+    <div class="radar-ring"></div>
+    <div class="radar-sweep"></div>
+
+    <div class="hero-content">
+      <div class="shield-wrap">
+        <img src="assets/Logo_w.svg" alt="Falkon Aviation and Defence Technologies" class="shield-svg">
       </div>
-      <div class="cap-label">Drone / UAV<br>Systems</div>
-    </div>
-    <div class="cap-item">
-      <div class="cap-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#00aaff" stroke-width="1.5">
-          <circle cx="12" cy="12" r="10"/>
-          <circle cx="12" cy="12" r="4"/>
-          <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
-          <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
-          <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
-          <line x1="19.07" y1="4.93" x2="16.24" y2="7.76"/>
-        </svg>
+
+      <div class="brand-name">FALKON</div>
+      <div class="brand-sub">Aviation & Defence Technologies</div>
+      <div class="divider-line"></div>
+      <h1 class="hero-tagline">Advanced Training &<br><em>Intelligent Defence Solutions</em></h1>
+
+      <div class="hero-buttons">
+        <a href="#solutions" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10" />
+          </svg>
+          Explore Systems
+        </a>
+        <a href="#contact" class="btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.18 2 2 0 012.1 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+          </svg>
+          Request Briefing
+        </a>
       </div>
-      <div class="cap-label">Flight Debriefing<br>Systems</div>
     </div>
-    <div class="cap-item">
-      <div class="cap-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#00aaff" stroke-width="1.5">
-          <rect x="2" y="3" width="20" height="14" rx="2"/>
-          <path d="M8 21h8M12 17v4"/>
-          <path d="M6 8l3 3 3-3 3 3"/>
-        </svg>
+
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="status-dot green"></div>SYSTEMS OPERATIONAL
       </div>
-      <div class="cap-label">C4ISR Command<br>Systems</div>
+      <div class="status-item">
+        <div class="status-dot"></div>SECURE CHANNEL ACTIVE
+      </div>
+      <div class="status-item">
+        <div class="status-dot amber"></div>CLEARANCE LEVEL: RESTRICTED
+      </div>
+      <div class="status-item">
+        <div class="status-dot green"></div>GLOBAL COVERAGE: 47 NATIONS
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- SOLUTIONS -->
-<section class="solutions" id="solutions">
-  <div class="section-header">
-    <div class="section-label">// MISSION CRITICAL SYSTEMS</div>
-    <h2 class="section-title">Our Solutions</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="solutions-grid">
-    <div class="sol-card">
-      <div class="sol-number">01 //</div>
-      <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
-        <path d="M24 4L44 14V28C44 38 35 46 24 48C13 46 4 38 4 28V14L24 4Z"/>
-        <path d="M18 24l4 4 8-8"/>
-      </svg>
-      <div class="sol-title">Pilot Training<br>Programs</div>
-      <p class="sol-desc">Comprehensive civilian and military flight training solutions incorporating next-generation simulation technology and real-world mission scenarios.</p>
-      <a href="#" class="sol-link">Learn More →</a>
-    </div>
-
-    <div class="sol-card">
-      <div class="sol-number">02 //</div>
-      <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
-        <path d="M6 32l10-8 8 4 18-16"/>
-        <circle cx="36" cy="12" r="3"/>
-        <path d="M4 40h40"/>
-        <path d="M20 40V28M28 40V20"/>
-      </svg>
-      <div class="sol-title">Drone & UAV<br>Systems</div>
-      <p class="sol-desc">State-of-the-art unmanned aerial vehicle platforms for reconnaissance, surveillance, and tactical operations in contested environments.</p>
-      <a href="#" class="sol-link">Learn More →</a>
-    </div>
-
-    <div class="sol-card">
-      <div class="sol-number">03 //</div>
-      <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
-        <rect x="4" y="8" width="40" height="28" rx="2"/>
-        <path d="M16 44h16M24 36v8"/>
-        <circle cx="24" cy="22" r="6"/>
-        <path d="M14 22h4M30 22h4M24 12v4M24 30v4"/>
-      </svg>
-      <div class="sol-title">Flight Debriefing<br>Systems</div>
-      <p class="sol-desc">Integrated post-mission analysis and debriefing platforms that accelerate learning cycles and enhance operational readiness for aircrews.</p>
-      <a href="#" class="sol-link">Learn More →</a>
-    </div>
-
-    <div class="sol-card">
-      <div class="sol-number">04 //</div>
-      <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
-        <rect x="2" y="10" width="44" height="28" rx="3"/>
-        <path d="M10 20h6l4 8 4-14 4 8h10"/>
-        <path d="M2 34h44"/>
-      </svg>
-      <div class="sol-title">C4ISR Command<br>Systems</div>
-      <p class="sol-desc">Command, Control, Communications, Computers, Intelligence, Surveillance & Reconnaissance solutions delivering battlefield superiority.</p>
-      <a href="#" class="sol-link">Learn More →</a>
-    </div>
-
-    <div class="sol-card">
-      <div class="sol-number">05 //</div>
-      <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
-        <circle cx="24" cy="24" r="16"/>
-        <circle cx="24" cy="24" r="8"/>
-        <circle cx="24" cy="24" r="2"/>
-        <line x1="24" y1="8" x2="24" y2="16"/>
-        <line x1="24" y1="32" x2="24" y2="40"/>
-        <line x1="8" y1="24" x2="16" y2="24"/>
-        <line x1="32" y1="24" x2="40" y2="24"/>
-      </svg>
-      <div class="sol-title">Intelligence &<br>Surveillance</div>
-      <p class="sol-desc">Multi-domain intelligence fusion platforms enabling real-time situational awareness across air, land, sea, space, and cyber domains.</p>
-      <a href="#" class="sol-link">Learn More →</a>
-    </div>
-
-    <div class="sol-card">
-      <div class="sol-number">06 //</div>
-      <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
-        <path d="M24 4l6 12h13l-10 8 4 13-13-8-13 8 4-13L5 16h13z"/>
-      </svg>
-      <div class="sol-title">Mission Planning<br>Software</div>
-      <p class="sol-desc">Advanced AI-powered mission planning and route optimization tools designed for complex multi-asset operations in dynamic threat environments.</p>
-      <a href="#" class="sol-link">Learn More →</a>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<div class="stats">
-  <div class="stats-inner">
-    <div>
-      <div class="stat-num">47+</div>
-      <div class="stat-label">Nations Served</div>
-    </div>
-    <div>
-      <div class="stat-num">12K+</div>
-      <div class="stat-label">Pilots Trained</div>
-    </div>
-    <div>
-      <div class="stat-num">30yr</div>
-      <div class="stat-label">Operational Record</div>
-    </div>
-    <div>
-      <div class="stat-num">99.8%</div>
-      <div class="stat-label">Mission Uptime</div>
-    </div>
-  </div>
-</div>
-
-<!-- TRAINING -->
-<section class="training" id="training">
-  <div class="training-inner">
-    <div class="training-visual">
-      <div class="hud-screen">
-        <div class="hud-top">
-          <span>SYS: ONLINE</span>
-          <span>MODE: COMBAT SIM</span>
-          <span>ALT: 28,500 FT</span>
+  <!-- CAPABILITIES STRIP -->
+  <div class="capabilities" id="capabilities">
+    <div class="cap-grid">
+      <div class="cap-item">
+        <div class="cap-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00aaff" stroke-width="1.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
         </div>
+        <div class="cap-label">Civilian & Military<br>Pilot Training</div>
+      </div>
+      <div class="cap-item">
+        <div class="cap-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00aaff" stroke-width="1.5">
+            <path d="M3 17l2-8 7 3 7-3 2 8" />
+            <circle cx="12" cy="8" r="2" />
+            <path d="M5 17h14" />
+          </svg>
+        </div>
+        <div class="cap-label">Drone / UAV<br>Systems</div>
+      </div>
+      <div class="cap-item">
+        <div class="cap-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00aaff" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="12" r="4" />
+            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
+            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
+            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
+            <line x1="19.07" y1="4.93" x2="16.24" y2="7.76" />
+          </svg>
+        </div>
+        <div class="cap-label">Flight Debriefing<br>Systems</div>
+      </div>
+      <div class="cap-item">
+        <div class="cap-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00aaff" stroke-width="1.5">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <path d="M8 21h8M12 17v4" />
+            <path d="M6 8l3 3 3-3 3 3" />
+          </svg>
+        </div>
+        <div class="cap-label">C4ISR Command<br>Systems</div>
+      </div>
+    </div>
+  </div>
 
-        <div class="hud-center">
-          <div class="crosshair">
-            <div class="crosshair-ring"></div>
-            <div class="crosshair-ring-2"></div>
+  <!-- SOLUTIONS -->
+  <section class="solutions" id="solutions">
+    <div class="section-header">
+      <div class="section-label">// MISSION CRITICAL SYSTEMS</div>
+      <h2 class="section-title">Our Solutions</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="solutions-grid">
+      <div class="sol-card">
+        <div class="sol-number">01 //</div>
+        <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
+          <path d="M24 4L44 14V28C44 38 35 46 24 48C13 46 4 38 4 28V14L24 4Z" />
+          <path d="M18 24l4 4 8-8" />
+        </svg>
+        <div class="sol-title">Pilot Training<br>Programs</div>
+        <p class="sol-desc">Comprehensive civilian and military flight training solutions incorporating next-generation
+          simulation technology and real-world mission scenarios.</p>
+        <a href="#" class="sol-link">Learn More →</a>
+      </div>
+
+      <div class="sol-card">
+        <div class="sol-number">02 //</div>
+        <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
+          <path d="M6 32l10-8 8 4 18-16" />
+          <circle cx="36" cy="12" r="3" />
+          <path d="M4 40h40" />
+          <path d="M20 40V28M28 40V20" />
+        </svg>
+        <div class="sol-title">Drone & UAV<br>Systems</div>
+        <p class="sol-desc">State-of-the-art unmanned aerial vehicle platforms for reconnaissance, surveillance, and
+          tactical operations in contested environments.</p>
+        <a href="#" class="sol-link">Learn More →</a>
+      </div>
+
+      <div class="sol-card">
+        <div class="sol-number">03 //</div>
+        <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
+          <rect x="4" y="8" width="40" height="28" rx="2" />
+          <path d="M16 44h16M24 36v8" />
+          <circle cx="24" cy="22" r="6" />
+          <path d="M14 22h4M30 22h4M24 12v4M24 30v4" />
+        </svg>
+        <div class="sol-title">Flight Debriefing<br>Systems</div>
+        <p class="sol-desc">Integrated post-mission analysis and debriefing platforms that accelerate learning cycles
+          and enhance operational readiness for aircrews.</p>
+        <a href="#" class="sol-link">Learn More →</a>
+      </div>
+
+      <div class="sol-card">
+        <div class="sol-number">04 //</div>
+        <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
+          <rect x="2" y="10" width="44" height="28" rx="3" />
+          <path d="M10 20h6l4 8 4-14 4 8h10" />
+          <path d="M2 34h44" />
+        </svg>
+        <div class="sol-title">C4ISR Command<br>Systems</div>
+        <p class="sol-desc">Command, Control, Communications, Computers, Intelligence, Surveillance & Reconnaissance
+          solutions delivering battlefield superiority.</p>
+        <a href="#" class="sol-link">Learn More →</a>
+      </div>
+
+      <div class="sol-card">
+        <div class="sol-number">05 //</div>
+        <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
+          <circle cx="24" cy="24" r="16" />
+          <circle cx="24" cy="24" r="8" />
+          <circle cx="24" cy="24" r="2" />
+          <line x1="24" y1="8" x2="24" y2="16" />
+          <line x1="24" y1="32" x2="24" y2="40" />
+          <line x1="8" y1="24" x2="16" y2="24" />
+          <line x1="32" y1="24" x2="40" y2="24" />
+        </svg>
+        <div class="sol-title">Intelligence &<br>Surveillance</div>
+        <p class="sol-desc">Multi-domain intelligence fusion platforms enabling real-time situational awareness across
+          air, land, sea, space, and cyber domains.</p>
+        <a href="#" class="sol-link">Learn More →</a>
+      </div>
+
+      <div class="sol-card">
+        <div class="sol-number">06 //</div>
+        <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
+          <path d="M24 4l6 12h13l-10 8 4 13-13-8-13 8 4-13L5 16h13z" />
+        </svg>
+        <div class="sol-title">Mission Planning<br>Software</div>
+        <p class="sol-desc">Advanced AI-powered mission planning and route optimization tools designed for complex
+          multi-asset operations in dynamic threat environments.</p>
+        <a href="#" class="sol-link">Learn More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stats-inner">
+      <div>
+        <div class="stat-num">47+</div>
+        <div class="stat-label">Nations Served</div>
+      </div>
+      <div>
+        <div class="stat-num">12K+</div>
+        <div class="stat-label">Pilots Trained</div>
+      </div>
+      <div>
+        <div class="stat-num">30yr</div>
+        <div class="stat-label">Operational Record</div>
+      </div>
+      <div>
+        <div class="stat-num">99.8%</div>
+        <div class="stat-label">Mission Uptime</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAINING -->
+  <section class="training" id="training">
+    <div class="training-inner">
+      <div class="training-visual">
+        <div class="hud-screen">
+          <div class="hud-top">
+            <span>SYS: ONLINE</span>
+            <span>MODE: COMBAT SIM</span>
+            <span>ALT: 28,500 FT</span>
+          </div>
+
+          <div class="hud-center">
+            <div class="crosshair">
+              <div class="crosshair-ring"></div>
+              <div class="crosshair-ring-2"></div>
+            </div>
+          </div>
+
+          <div class="hud-bar">
+            <div class="hud-bar-fill"></div>
+          </div>
+
+          <div class="hud-bottom">
+            <span>SPD: MACH 1.4</span>
+            <span>FUEL: 73%</span>
+            <span>HDG: 247°</span>
           </div>
         </div>
+      </div>
 
-        <div class="hud-bar">
-          <div class="hud-bar-fill"></div>
-        </div>
+      <div class="training-content">
+        <div class="section-label">// ADVANCED TRAINING DIVISION</div>
+        <h3>Next-Generation<br>Flight Simulation</h3>
+        <p>Falkon Aviation and Defence Technologies delivers world-class pilot training through immersive simulation
+          environments that replicate real-world conditions with exceptional fidelity. Our programs serve both civilian
+          aviation authorities and elite military units.</p>
+        <ul class="feature-list">
+          <li>Full-mission simulation with threat replication</li>
+          <li>AI-driven adaptive training scenarios</li>
+          <li>Multi-crew coordination exercises</li>
+          <li>Electronic warfare & countermeasures training</li>
+          <li>Weapons systems integration & deployment</li>
+          <li>Real-time performance analytics & debriefing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-        <div class="hud-bottom">
-          <span>SPD: MACH 1.4</span>
-          <span>FUEL: 73%</span>
-          <span>HDG: 247°</span>
-        </div>
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-header">
+      <div class="section-label">// SECURE COMMUNICATIONS</div>
+      <h2 class="section-title">Establish Contact</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-card-label">Headquarters</div>
+        <div class="contact-card-value">+1 (800) FDS-0001</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-label">Secure Email</div>
+        <div class="contact-card-value">ops@falkonaviation.com</div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-label">Clearance</div>
+        <div class="contact-card-value">Defence Grade TLS</div>
       </div>
     </div>
 
-    <div class="training-content">
-      <div class="section-label">// ADVANCED TRAINING DIVISION</div>
-      <h3>Next-Generation<br>Flight Simulation</h3>
-      <p>Falkon Aviation and Defence Technologies delivers world-class pilot training through immersive simulation environments that replicate real-world conditions with exceptional fidelity. Our programs serve both civilian aviation authorities and elite military units.</p>
-      <ul class="feature-list">
-        <li>Full-mission simulation with threat replication</li>
-        <li>AI-driven adaptive training scenarios</li>
-        <li>Multi-crew coordination exercises</li>
-        <li>Electronic warfare & countermeasures training</li>
-        <li>Weapons systems integration & deployment</li>
-        <li>Real-time performance analytics & debriefing</li>
-      </ul>
+    <div style="margin-top:50px;">
+      <a href="mailto:ops@falkonaviation.com" class="btn-primary">Request Classified Briefing</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="section-header">
-    <div class="section-label">// SECURE COMMUNICATIONS</div>
-    <h2 class="section-title">Establish Contact</h2>
-    <div class="section-rule"></div>
-  </div>
-
-  <div class="contact-grid">
-    <div class="contact-card">
-      <div class="contact-card-label">Headquarters</div>
-      <div class="contact-card-value">+1 (800) FDS-0001</div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-copy">© 2026 FALKON AVIATION AND DEFENCE TECHNOLOGIES. ALL RIGHTS RESERVED.</div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Security</a>
+      <a href="#">Compliance</a>
     </div>
-    <div class="contact-card">
-      <div class="contact-card-label">Secure Email</div>
-      <div class="contact-card-value">ops@falkonaviation.com</div>
-    </div>
-    <div class="contact-card">
-      <div class="contact-card-label">Clearance</div>
-      <div class="contact-card-value">Defence Grade TLS</div>
-    </div>
-  </div>
-
-  <div style="margin-top:50px;">
-    <a href="mailto:ops@falkonaviation.com" class="btn-primary">Request Classified Briefing</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-copy">© 2026 FALKON AVIATION AND DEFENCE TECHNOLOGIES. ALL RIGHTS RESERVED.</div>
-  <div class="footer-links">
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a href="#">Security</a>
-    <a href="#">Compliance</a>
-  </div>
-</footer>
+  </footer>
 
 </body>
+
 </html>
