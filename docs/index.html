@@ -827,10 +827,155 @@
     }
     .footer-links a:hover { color: var(--blue-core); }
 
+    /* ── HAMBURGER BUTTON ── */
+    .hamburger-button {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      background: rgba(0,170,255,0.08);
+      border: 1px solid rgba(0,170,255,0.2);
+      cursor: pointer;
+      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    }
+    .hamburger-button span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--blue-core);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── SIDE MENU ── */
+    #sideMenu {
+      position: fixed;
+      top: 0; left: 0;
+      width: min(280px, 85vw);
+      height: 100vh;
+      background: rgba(4, 12, 20, 0.98);
+      border-right: 1px solid rgba(0,170,255,0.15);
+      backdrop-filter: blur(20px);
+      transform: translateX(-110%);
+      transition: transform 0.3s ease;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+    }
+    #sideMenu.open {
+      transform: translateX(0);
+    }
+    .side-menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .side-menu-logo {
+      font-family: 'Orbitron', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--white);
+    }
+    .side-menu-logo span {
+      display: block;
+      font-size: 8px;
+      letter-spacing: 4px;
+      color: var(--blue-core);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .side-menu-close {
+      width: 34px;
+      height: 34px;
+      background: rgba(0,170,255,0.08);
+      border: 1px solid rgba(0,170,255,0.2);
+      color: var(--steel);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+      transition: all 0.2s;
+    }
+    .side-menu-close:hover {
+      background: rgba(0,170,255,0.2);
+      color: var(--white);
+    }
+    .side-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .side-nav a {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--steel);
+      text-decoration: none;
+      padding: 12px 16px;
+      border-left: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .side-nav a:hover {
+      color: var(--blue-bright);
+      border-left-color: var(--blue-core);
+      background: rgba(0,170,255,0.06);
+    }
+    .side-menu-cta {
+      margin-top: auto;
+      padding-top: 24px;
+      border-top: 1px solid rgba(0,170,255,0.12);
+    }
+    .side-menu-cta a {
+      display: block;
+      text-align: center;
+      font-family: 'Orbitron', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--blue-core), var(--blue-bright));
+      padding: 14px;
+      text-decoration: none;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: all 0.3s;
+    }
+    .side-menu-cta a:hover {
+      box-shadow: var(--glow-sm);
+    }
+
+    /* ── BACKDROP ── */
+    #menuBackdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(2px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 199;
+    }
+    #menuBackdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
       .nav-links { display: none; }
+      .hamburger-button { display: flex; }
       section { padding: 70px 24px; }
       .cap-grid { grid-template-columns: repeat(2, 1fr); }
       .solutions-grid { grid-template-columns: 1fr; }
@@ -873,7 +1018,36 @@
   </ul>
 
   <a href="#contact" class="nav-cta">Request Briefing</a>
+
+  <button class="hamburger-button" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" aria-hidden="true" role="dialog" aria-label="Navigation menu">
+  <div class="side-menu-header">
+    <div class="side-menu-logo">
+      FALCON
+      <span>DEFENCE SYSTEMS</span>
+    </div>
+    <button class="side-menu-close" aria-label="Close menu">&#x2715;</button>
+  </div>
+  <nav class="side-nav">
+    <a href="#solutions">Solutions</a>
+    <a href="#training">Training</a>
+    <a href="#capabilities">Systems</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="side-menu-cta">
+    <a href="#contact">Request Briefing</a>
+  </div>
+</div>
+
+<!-- BACKDROP -->
+<div id="menuBackdrop"></div>
 
 <!-- HERO -->
 <section class="hero">
