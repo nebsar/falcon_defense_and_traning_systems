@@ -208,6 +208,7 @@ if (solutionCarousel) {
 
   viewport.addEventListener('pointerdown', (event) => {
     if (event.button !== 0) return;
+    if (event.target.closest('a, button')) return;
     isDragging = true;
     dragStartX = event.clientX;
     dragDelta = 0;

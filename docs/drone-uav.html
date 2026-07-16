@@ -33,6 +33,10 @@
     .page-hero .sol-number { font-family: 'Share Tech Mono', monospace; font-size: 13px; color: rgba(0,170,255,0.5); letter-spacing: 3px; margin-bottom: 16px; }
     .page-hero h1 { font-family: 'FalkonFont', monospace; font-size: clamp(32px, 5vw, 56px); font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--white); text-shadow: 0 0 30px rgba(0,170,255,0.3); line-height: 1.2; margin-bottom: 20px; }
     .page-hero p { font-size: 18px; color: var(--steel); max-width: 700px; margin: 0 auto; line-height: 1.7; }
+    .detail-visual { position: relative; max-width: 1120px; aspect-ratio: 16 / 7; margin: 56px auto 0; overflow: hidden; border: 1px solid rgba(0,170,255,0.22); background: var(--dark3); box-shadow: 0 24px 70px rgba(0,0,0,0.35); }
+    .detail-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .detail-visual::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, rgba(4,12,20,0.5), transparent 45%), repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.1) 3px, rgba(0,0,0,0.1) 4px); }
+    .detail-visual figcaption { position: absolute; z-index: 2; left: 24px; bottom: 20px; font-family: 'Share Tech Mono', monospace; font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--blue-bright); text-shadow: var(--glow-sm); }
     .detail-content { max-width: 960px; margin: 0 auto; padding: 80px 40px; }
     .detail-section { margin-bottom: 64px; }
     .detail-section h2 { font-family: 'FalkonFont', monospace; font-size: 22px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--white); margin-bottom: 24px; display: flex; align-items: center; gap: 14px; }
@@ -51,7 +55,7 @@
     .btn-primary:hover { box-shadow: 0 0 20px rgba(0,170,255,0.6); transform: translateY(-2px); }
     .detail-footer { background: var(--dark); border-top: 1px solid rgba(0,170,255,0.1); padding: 30px 60px; display: flex; align-items: center; justify-content: space-between; }
     .detail-footer .copy { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(120,160,190,0.5); letter-spacing: 1px; }
-    @media (max-width: 768px) { .detail-nav { padding: 16px 24px; } .page-hero { padding: 130px 24px 60px; } .detail-content { padding: 50px 24px; } .detail-stats { grid-template-columns: 1fr; } .detail-footer { flex-direction: column; gap: 12px; text-align: center; } }
+    @media (max-width: 768px) { .detail-nav { padding: 16px 24px; } .page-hero { padding: 130px 24px 60px; } .detail-visual { aspect-ratio: 16 / 10; margin: 32px 24px 0; } .detail-visual figcaption { left: 16px; bottom: 14px; } .detail-content { padding: 50px 24px; } .detail-stats { grid-template-columns: 1fr; } .detail-footer { flex-direction: column; gap: 12px; text-align: center; } }
   </style>
 </head>
 <body>
@@ -66,6 +70,11 @@
   <h1>Drone & UAV Systems</h1>
   <p>State-of-the-art unmanned aerial vehicle platforms for reconnaissance, surveillance, and tactical operations in contested environments.</p>
 </section>
+
+<figure class="detail-visual">
+  <img src="assets/solutions/drone-uav.jpg" alt="Unmanned aerial vehicle operating over a remote landscape" width="1536" height="1024" decoding="async">
+  <figcaption>UAV-02 // Persistent Unmanned Operations</figcaption>
+</figure>
 
 <div class="detail-content">
   <div class="detail-section">
