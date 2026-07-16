@@ -78,24 +78,63 @@ if (solutionCarousel) {
 
   const getSlideName = (slide) => slide.querySelector('h3')?.textContent.trim() || 'Solution';
 
+  const renderCounterCharacters = (counter, currentValue, nextValue = currentValue) => {
+    const currentCharacters = Array.from(currentValue);
+    const nextCharacters = Array.from(nextValue);
+    const characterCount = Math.max(currentCharacters.length, nextCharacters.length);
+    const characters = document.createElement('span');
+    characters.className = 'stat-characters';
+    characters.setAttribute('aria-hidden', 'true');
+
+    for (let index = 0; index < characterCount; index += 1) {
+      const currentCharacter = currentCharacters[index] || ' ';
+      const nextCharacter = nextCharacters[index] || ' ';
+      const slot = document.createElement('span');
+      const reel = document.createElement('span');
+      const current = document.createElement('span');
+      const next = document.createElement('span');
+
+      slot.className = 'stat-char';
+      if ('/–-'.includes(currentCharacter) || '/–-'.includes(nextCharacter)) slot.classList.add('is-narrow');
+      if (currentCharacter === ' ' && nextCharacter === ' ') slot.classList.add('is-space');
+
+      reel.className = 'stat-char-reel';
+      reel.style.setProperty('--char-delay', reducedMotion ? '0ms' : `${index * 55}ms`);
+      current.className = 'stat-char-value stat-char-current';
+      next.className = 'stat-char-value stat-char-next';
+      current.textContent = currentCharacter === ' ' ? '\u00a0' : currentCharacter;
+      next.textContent = nextCharacter === ' ' ? '\u00a0' : nextCharacter;
+
+      reel.append(current, next);
+      slot.append(reel);
+      characters.append(slot);
+    }
+
+    counter.replaceChildren(characters);
+    counter.setAttribute('aria-label', nextValue);
+  };
+
+  counters.forEach((counter) => {
+    const initialValue = counter.querySelector('.stat-current')?.textContent.trim() || counter.textContent.trim();
+    counter.dataset.value = initialValue;
+    renderCounterCharacters(counter, initialValue);
+  });
+
   const rollCounter = (counter, value) => {
-    const current = counter.querySelector('.stat-current');
-    const next = counter.querySelector('.stat-next');
-    if (!current || !next || current.textContent === value) return;
+    const currentValue = counter.dataset.value || '';
+    if (currentValue === value) return;
 
     clearTimeout(counter.rollTimer);
-    next.textContent = value;
-    counter.classList.remove('is-resetting');
-    counter.classList.add('is-rolling');
+    counter.classList.remove('is-rolling');
+    renderCounterCharacters(counter, currentValue, value);
+    void counter.offsetWidth;
+    window.requestAnimationFrame(() => counter.classList.add('is-rolling'));
 
     counter.rollTimer = window.setTimeout(() => {
-      current.textContent = value;
-      counter.classList.add('is-resetting');
+      counter.dataset.value = value;
       counter.classList.remove('is-rolling');
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => counter.classList.remove('is-resetting'));
-      });
-    }, reducedMotion ? 20 : 560);
+      renderCounterCharacters(counter, value);
+    }, reducedMotion ? 30 : 520 + Math.max(Array.from(currentValue).length, Array.from(value).length) * 55);
   };
 
   const updateCounters = (slide) => {

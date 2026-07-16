@@ -714,6 +714,9 @@
       height: 1em;
       overflow: hidden;
       position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
     }
 
     .stat-reel {
@@ -738,6 +741,51 @@
       align-items: center;
       justify-content: center;
       white-space: nowrap;
+    }
+
+    .stat-characters {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      height: 1em;
+    }
+
+    .stat-char {
+      display: block;
+      width: 0.67em;
+      height: 1em;
+      overflow: hidden;
+      flex: 0 0 auto;
+    }
+
+    .stat-char.is-narrow {
+      width: 0.42em;
+    }
+
+    .stat-char.is-space {
+      width: 0.34em;
+    }
+
+    .stat-char-reel {
+      height: 200%;
+      display: grid;
+      grid-template-rows: repeat(2, 1fr);
+      transform: translateY(0);
+      transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: var(--char-delay, 0ms);
+      will-change: transform;
+    }
+
+    .stat-num.is-rolling .stat-char-reel {
+      transform: translateY(-50%);
+    }
+
+    .stat-char-value {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      white-space: pre;
     }
 
     .stat-label {
@@ -1638,7 +1686,8 @@
     @media (prefers-reduced-motion: reduce) {
       .carousel-track,
       .showcase-visual img,
-      .stat-reel {
+      .stat-reel,
+      .stat-char-reel {
         transition-duration: 0.01ms;
       }
 
