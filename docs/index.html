@@ -13,6 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
     rel="stylesheet">
+  <script src="script.js" defer></script>
   <style>
     @font-face {
       font-family: 'FalkonFont';
@@ -710,6 +711,33 @@
       text-shadow: var(--glow-sm);
       line-height: 1;
       margin-bottom: 10px;
+      height: 1em;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .stat-reel {
+      height: 200%;
+      display: grid;
+      grid-template-rows: repeat(2, 1fr);
+      transform: translateY(0);
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .stat-num.is-rolling .stat-reel {
+      transform: translateY(-50%);
+    }
+
+    .stat-num.is-resetting .stat-reel {
+      transition: none;
+    }
+
+    .stat-value {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
     }
 
     .stat-label {
@@ -904,6 +932,317 @@
       box-shadow: 0 0 6px var(--blue-core);
       flex-shrink: 0;
       clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+
+    /* ── SOLUTION SHOWCASE CAROUSEL ── */
+    .solution-showcase {
+      background: var(--dark);
+      overflow: hidden;
+      padding-top: 84px;
+    }
+
+    .showcase-shell {
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+
+    .showcase-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 34px;
+    }
+
+    .showcase-heading h2 {
+      font-family: 'FalkonFont', monospace;
+      font-size: clamp(22px, 3.4vw, 38px);
+      letter-spacing: 4px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .showcase-kicker {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--blue-core);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .showcase-instruction {
+      max-width: 330px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      line-height: 1.7;
+      letter-spacing: 1.4px;
+      text-align: right;
+      text-transform: uppercase;
+      color: rgba(176, 200, 216, 0.55);
+    }
+
+    .solution-carousel {
+      position: relative;
+    }
+
+    .carousel-viewport {
+      overflow: hidden;
+      border: 1px solid rgba(0, 170, 255, 0.14);
+      background: rgba(7, 21, 32, 0.65);
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+    }
+
+    .carousel-viewport.is-dragging {
+      cursor: grabbing;
+    }
+
+    .carousel-track {
+      display: flex;
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.78s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .carousel-track.is-dragging {
+      transition: none;
+    }
+
+    .carousel-track.is-resetting {
+      transition: none;
+    }
+
+    .solution-slide {
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(380px, 0.92fr);
+      align-items: stretch;
+    }
+
+    .showcase-visual {
+      position: relative;
+      min-height: 540px;
+      overflow: hidden;
+      background: var(--dark3);
+    }
+
+    .showcase-visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.035);
+      transition: transform 5.4s ease;
+      pointer-events: none;
+    }
+
+    .solution-slide.is-active .showcase-visual img {
+      transform: scale(1);
+    }
+
+    .showcase-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(90deg, rgba(4, 12, 20, 0.04) 45%, rgba(4, 12, 20, 0.58) 100%),
+        linear-gradient(0deg, rgba(4, 12, 20, 0.62) 0%, transparent 42%);
+      pointer-events: none;
+    }
+
+    .showcase-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, 0.11) 3px, rgba(0, 0, 0, 0.11) 4px);
+      pointer-events: none;
+    }
+
+    .visual-hud {
+      position: absolute;
+      inset: 22px;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .visual-hud-top,
+    .visual-hud-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(77, 212, 255, 0.82);
+      text-shadow: 0 0 10px rgba(0, 170, 255, 0.6);
+    }
+
+    .visual-frame-corner {
+      position: absolute;
+      width: 38px;
+      height: 38px;
+      border-color: rgba(0, 170, 255, 0.56);
+      border-style: solid;
+    }
+
+    .visual-frame-corner.top-left { top: 0; left: 0; border-width: 1px 0 0 1px; }
+    .visual-frame-corner.top-right { top: 0; right: 0; border-width: 1px 1px 0 0; }
+    .visual-frame-corner.bottom-left { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+    .visual-frame-corner.bottom-right { right: 0; bottom: 0; border-width: 0 1px 1px 0; }
+
+    .showcase-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 58px 54px;
+      background: linear-gradient(135deg, rgba(10, 30, 46, 0.96), rgba(4, 12, 20, 0.98));
+      position: relative;
+    }
+
+    .showcase-content::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 12%;
+      bottom: 12%;
+      width: 1px;
+      background: linear-gradient(transparent, var(--blue-core), transparent);
+      box-shadow: var(--glow-sm);
+    }
+
+    .showcase-content h3 {
+      font-family: 'FalkonFont', monospace;
+      font-size: clamp(22px, 2.8vw, 36px);
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+      line-height: 1.22;
+    }
+
+    .showcase-content p {
+      font-size: 16px;
+      color: rgba(180, 210, 230, 0.72);
+      line-height: 1.72;
+      margin-bottom: 28px;
+    }
+
+    .showcase-link {
+      align-self: flex-start;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue-core);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0, 170, 255, 0.35);
+      padding-bottom: 7px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .showcase-link:hover,
+    .showcase-link:focus-visible {
+      color: var(--blue-bright);
+      border-color: var(--blue-bright);
+    }
+
+    .carousel-controls {
+      display: grid;
+      grid-template-columns: auto minmax(160px, 1fr) auto;
+      align-items: center;
+      gap: 24px;
+      padding-top: 24px;
+    }
+
+    .carousel-arrow {
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(0, 170, 255, 0.24);
+      background: rgba(0, 100, 170, 0.08);
+      color: var(--blue-core);
+      font-size: 20px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+
+    .carousel-arrow:hover,
+    .carousel-arrow:focus-visible {
+      border-color: var(--blue-core);
+      background: rgba(0, 170, 255, 0.13);
+      color: var(--blue-bright);
+    }
+
+    .carousel-navigation {
+      display: grid;
+      gap: 14px;
+    }
+
+    .carousel-progress {
+      height: 2px;
+      overflow: hidden;
+      background: rgba(0, 170, 255, 0.12);
+    }
+
+    .carousel-progress-fill {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue-dim), var(--blue-bright));
+      box-shadow: 0 0 8px var(--blue-core);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    .carousel-progress-fill.is-running {
+      animation: carousel-progress 5s linear forwards;
+    }
+
+    @keyframes carousel-progress {
+      to { transform: scaleX(1); }
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .carousel-dot {
+      width: 28px;
+      height: 3px;
+      padding: 0;
+      border: 0;
+      background: rgba(176, 200, 216, 0.22);
+      cursor: pointer;
+      transition: width 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+
+    .carousel-dot[aria-current="true"] {
+      width: 48px;
+      background: var(--blue-core);
+      box-shadow: 0 0 8px rgba(0, 170, 255, 0.7);
+    }
+
+    .carousel-status {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* ── CONTACT ── */
@@ -1191,6 +1530,122 @@
         display: none;
       }
     }
+    .showcase-content .feature-list {
+      margin-bottom: 30px;
+    }
+
+    .showcase-content .feature-list li {
+      align-items: flex-start;
+      line-height: 1.45;
+    }
+
+    .showcase-content .feature-list li::before {
+      margin-top: 7px;
+    }
+
+    @media (max-width: 900px) {
+      .solution-slide {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .showcase-instruction {
+        max-width: none;
+        text-align: left;
+      }
+
+      .showcase-visual {
+        min-height: 390px;
+      }
+
+      .showcase-content {
+        padding: 44px 34px 48px;
+      }
+
+      .showcase-content::before {
+        top: 0;
+        left: 10%;
+        right: 10%;
+        bottom: auto;
+        width: auto;
+        height: 1px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .stats {
+        padding: 54px 20px;
+      }
+
+      .stats-inner {
+        gap: 32px 14px;
+      }
+
+      .stat-num {
+        font-size: clamp(25px, 10vw, 38px);
+      }
+
+      .stat-label {
+        font-size: 10px;
+        letter-spacing: 1.3px;
+      }
+
+      .showcase-visual {
+        min-height: 300px;
+      }
+
+      .visual-hud {
+        inset: 14px;
+      }
+
+      .visual-hud-top span:nth-child(2),
+      .visual-hud-bottom span:nth-child(2) {
+        display: none;
+      }
+
+      .showcase-content {
+        padding: 38px 24px 42px;
+      }
+
+      .showcase-content h3 {
+        font-size: clamp(18px, 6vw, 24px);
+        letter-spacing: 1.5px;
+      }
+
+      .carousel-controls {
+        grid-template-columns: 42px minmax(0, 1fr) 42px;
+        gap: 12px;
+      }
+
+      .carousel-arrow {
+        width: 42px;
+        height: 42px;
+      }
+
+      .carousel-dot {
+        width: 15px;
+      }
+
+      .carousel-dot[aria-current="true"] {
+        width: 28px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .carousel-track,
+      .showcase-visual img,
+      .stat-reel {
+        transition-duration: 0.01ms;
+      }
+
+      .carousel-progress-fill.is-running {
+        animation: none;
+      }
+    }
   </style>
 </head>
 
@@ -1377,68 +1832,172 @@
   <div class="stats">
     <div class="stats-inner">
       <div>
-        <div class="stat-num">47+</div>
-        <div class="stat-label">Nations Served</div>
+        <div class="stat-num" data-solution-counter="0">
+          <div class="stat-reel"><span class="stat-value stat-current">01/06</span><span class="stat-value stat-next" aria-hidden="true">01/06</span></div>
+        </div>
+        <div class="stat-label">Solution Sequence</div>
       </div>
       <div>
-        <div class="stat-num">12K+</div>
-        <div class="stat-label">Pilots Trained</div>
+        <div class="stat-num" data-solution-counter="1">
+          <div class="stat-reel"><span class="stat-value stat-current">TRAIN</span><span class="stat-value stat-next" aria-hidden="true">TRAIN</span></div>
+        </div>
+        <div class="stat-label">Primary Domain</div>
       </div>
       <div>
-        <div class="stat-num">30yr</div>
-        <div class="stat-label">Operational Record</div>
+        <div class="stat-num" data-solution-counter="2">
+          <div class="stat-reel"><span class="stat-value stat-current">SIM</span><span class="stat-value stat-next" aria-hidden="true">SIM</span></div>
+        </div>
+        <div class="stat-label">System Mode</div>
       </div>
       <div>
-        <div class="stat-num">99.8%</div>
-        <div class="stat-label">Mission Uptime</div>
+        <div class="stat-num" data-solution-counter="3">
+          <div class="stat-reel"><span class="stat-value stat-current">GLOBAL</span><span class="stat-value stat-next" aria-hidden="true">GLOBAL</span></div>
+        </div>
+        <div class="stat-label">Deployment Scope</div>
       </div>
     </div>
   </div>
 
-  <!-- TRAINING -->
-  <section class="training" id="training">
-    <div class="training-inner">
-      <div class="training-visual">
-        <div class="hud-screen">
-          <div class="hud-top">
-            <span>SYS: ONLINE</span>
-            <span>MODE: COMBAT SIM</span>
-            <span>ALT: 28,500 FT</span>
-          </div>
-
-          <div class="hud-center">
-            <div class="crosshair">
-              <div class="crosshair-ring"></div>
-              <div class="crosshair-ring-2"></div>
-            </div>
-          </div>
-
-          <div class="hud-bar">
-            <div class="hud-bar-fill"></div>
-          </div>
-
-          <div class="hud-bottom">
-            <span>SPD: MACH 1.4</span>
-            <span>FUEL: 73%</span>
-            <span>HDG: 247°</span>
-          </div>
+  <!-- SOLUTION SHOWCASE -->
+  <section class="solution-showcase" id="training" aria-labelledby="showcase-title">
+    <div class="showcase-shell">
+      <div class="showcase-heading">
+        <div>
+          <div class="showcase-kicker">// Six Integrated Capabilities</div>
+          <h2 id="showcase-title">Solutions in Focus</h2>
         </div>
+        <p class="showcase-instruction">Auto-advances every 5 seconds · Drag, swipe, use arrows, or select a marker</p>
       </div>
 
-      <div class="training-content">
-        <div class="section-label">// ADVANCED TRAINING DIVISION</div>
-        <h3>Next-Generation<br>Flight Simulation</h3>
-        <p>Falkon Aviation and Defence Technologies delivers world-class pilot training through immersive simulation
-          environments that replicate real-world conditions with exceptional fidelity. Our programs serve both civilian
-          aviation authorities and elite military units.</p>
-        <ul class="feature-list">
-          <li>Full-mission simulation with threat replication</li>
-          <li>AI-driven adaptive training scenarios</li>
-          <li>Multi-crew coordination exercises</li>
-          <li>Electronic warfare & countermeasures training</li>
-          <li>Weapons systems integration & deployment</li>
-          <li>Real-time performance analytics & debriefing</li>
-        </ul>
+      <div class="solution-carousel" data-solution-carousel tabindex="0" aria-roledescription="carousel" aria-label="Falkon solutions">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <article class="solution-slide is-active" aria-hidden="false" data-counter-values="01/06|TRAIN|SIM|GLOBAL">
+              <div class="showcase-visual">
+                <img src="assets/solutions/pilot-training.jpg" alt="Pilot and instructor inside an advanced flight simulator" width="1536" height="1024" fetchpriority="high">
+                <div class="visual-hud" aria-hidden="true">
+                  <div class="visual-hud-top"><span>SYS: TRAIN-01</span><span>MODE: IMMERSIVE</span><span>STATUS: ACTIVE</span></div>
+                  <div class="visual-hud-bottom"><span>FIDELITY: MAX</span><span>CREW: LINKED</span><span>DEBRIEF: READY</span></div>
+                  <i class="visual-frame-corner top-left"></i><i class="visual-frame-corner top-right"></i><i class="visual-frame-corner bottom-left"></i><i class="visual-frame-corner bottom-right"></i>
+                </div>
+              </div>
+              <div class="showcase-content">
+                <div class="section-label">// 01 · Advanced Training Division</div>
+                <h3>Pilot Training Programs</h3>
+                <p>Immersive civilian and military flight training that combines high-fidelity simulation, adaptive scenarios, and structured performance analysis.</p>
+                <ul class="feature-list"><li>Full-mission simulation environments</li><li>AI-driven adaptive training scenarios</li><li>Multi-crew coordination exercises</li><li>Real-time analytics and debriefing</li></ul>
+                <a class="showcase-link" href="pilot-training.html">Explore Pilot Training →</a>
+              </div>
+            </article>
+
+            <article class="solution-slide" aria-hidden="true" data-counter-values="02/06|UAV|24/7|REMOTE">
+              <div class="showcase-visual">
+                <img src="assets/solutions/drone-uav.jpg" alt="Tactical unmanned aerial vehicle undergoing ground checks at blue hour" width="1536" height="1024" loading="lazy">
+                <div class="visual-hud" aria-hidden="true">
+                  <div class="visual-hud-top"><span>SYS: UAV-02</span><span>LINK: SECURE</span><span>STATUS: ONLINE</span></div>
+                  <div class="visual-hud-bottom"><span>ENDURANCE: EXT</span><span>PAYLOAD: MODULAR</span><span>CONTROL: REMOTE</span></div>
+                  <i class="visual-frame-corner top-left"></i><i class="visual-frame-corner top-right"></i><i class="visual-frame-corner bottom-left"></i><i class="visual-frame-corner bottom-right"></i>
+                </div>
+              </div>
+              <div class="showcase-content">
+                <div class="section-label">// 02 · Unmanned Systems Division</div>
+                <h3>Drone & UAV Systems</h3>
+                <p>Modular unmanned platforms engineered for persistent observation, demanding environments, and reliable remote operations.</p>
+                <ul class="feature-list"><li>Long-endurance fixed-wing platforms</li><li>Multi-sensor payload integration</li><li>Secure command and control links</li><li>Autonomous route and mission support</li></ul>
+                <a class="showcase-link" href="drone-uav.html">Explore UAV Systems →</a>
+              </div>
+            </article>
+
+            <article class="solution-slide" aria-hidden="true" data-counter-values="03/06|DATA|360°|LIVE">
+              <div class="showcase-visual">
+                <img src="assets/solutions/flight-debriefing.jpg" alt="Aircrew reviewing mission telemetry in a flight debriefing room" width="1536" height="1024" loading="lazy">
+                <div class="visual-hud" aria-hidden="true">
+                  <div class="visual-hud-top"><span>SYS: DBRF-03</span><span>FEEDS: SYNC</span><span>STATUS: REVIEW</span></div>
+                  <div class="visual-hud-bottom"><span>VIDEO: MULTI</span><span>TELEMETRY: LIVE</span><span>LESSONS: CAPTURED</span></div>
+                  <i class="visual-frame-corner top-left"></i><i class="visual-frame-corner top-right"></i><i class="visual-frame-corner bottom-left"></i><i class="visual-frame-corner bottom-right"></i>
+                </div>
+              </div>
+              <div class="showcase-content">
+                <div class="section-label">// 03 · Mission Learning Division</div>
+                <h3>Flight Debriefing Systems</h3>
+                <p>Integrated post-mission review environments that synchronize video, telemetry, communications, and instructor insight into one clear operational picture.</p>
+                <ul class="feature-list"><li>Multi-source mission reconstruction</li><li>Synchronized video and telemetry</li><li>Collaborative instructor annotation</li><li>Searchable performance records</li></ul>
+                <a class="showcase-link" href="flight-debriefing.html">Explore Debriefing →</a>
+              </div>
+            </article>
+
+            <article class="solution-slide" aria-hidden="true" data-counter-values="04/06|C4ISR|MULTI|SECURE">
+              <div class="showcase-visual">
+                <img src="assets/solutions/c4isr.jpg" alt="Team coordinating multi-domain information in a C4ISR command center" width="1536" height="1024" loading="lazy">
+                <div class="visual-hud" aria-hidden="true">
+                  <div class="visual-hud-top"><span>SYS: C4ISR-04</span><span>DOMAINS: FUSED</span><span>STATUS: SECURE</span></div>
+                  <div class="visual-hud-bottom"><span>DATA: UNIFIED</span><span>COMMAND: LINKED</span><span>PICTURE: COMMON</span></div>
+                  <i class="visual-frame-corner top-left"></i><i class="visual-frame-corner top-right"></i><i class="visual-frame-corner bottom-left"></i><i class="visual-frame-corner bottom-right"></i>
+                </div>
+              </div>
+              <div class="showcase-content">
+                <div class="section-label">// 04 · Command Systems Division</div>
+                <h3>C4ISR Command Systems</h3>
+                <p>A unified command environment that fuses communications, computing, intelligence, surveillance, and reconnaissance into faster decisions.</p>
+                <ul class="feature-list"><li>Common operational picture</li><li>Multi-domain data fusion</li><li>Resilient secure communications</li><li>Role-based decision support</li></ul>
+                <a class="showcase-link" href="c4isr.html">Explore C4ISR →</a>
+              </div>
+            </article>
+
+            <article class="solution-slide" aria-hidden="true" data-counter-values="05/06|LAB|STEM|K–12">
+              <div class="showcase-visual">
+                <img src="assets/solutions/aviation-laboratories.jpg" alt="Students learning with flight simulators and aerodynamics experiments in an aviation laboratory" width="1536" height="1024" loading="lazy">
+                <div class="visual-hud" aria-hidden="true">
+                  <div class="visual-hud-top"><span>SYS: LAB-05</span><span>LEVEL: K–12</span><span>STATUS: LEARNING</span></div>
+                  <div class="visual-hud-bottom"><span>SIM: READY</span><span>STEM: APPLIED</span><span>MINDSET: AVIATION</span></div>
+                  <i class="visual-frame-corner top-left"></i><i class="visual-frame-corner top-right"></i><i class="visual-frame-corner bottom-left"></i><i class="visual-frame-corner bottom-right"></i>
+                </div>
+              </div>
+              <div class="showcase-content">
+                <div class="section-label">// 05 · Aviation Education Division</div>
+                <h3>Aviation Laboratories</h3>
+                <p>Turnkey aviation learning environments for primary, middle, and high schools—combining simulators, experiments, and age-appropriate training sets.</p>
+                <ul class="feature-list"><li>Student flight simulator stations</li><li>Hands-on aerodynamics experiments</li><li>Level-based aviation curricula</li><li>Modular classroom and equipment design</li></ul>
+                <a class="showcase-link" href="intelligence-surveillance.html">Explore Aviation Labs →</a>
+              </div>
+            </article>
+
+            <article class="solution-slide" aria-hidden="true" data-counter-values="06/06|PLAN|AI|READY">
+              <div class="showcase-visual">
+                <img src="assets/solutions/mission-planning.jpg" alt="Aviation specialists collaborating around a digital mission planning table" width="1536" height="1024" loading="lazy">
+                <div class="visual-hud" aria-hidden="true">
+                  <div class="visual-hud-top"><span>SYS: PLAN-06</span><span>ROUTES: OPTIMIZED</span><span>STATUS: READY</span></div>
+                  <div class="visual-hud-bottom"><span>ASSETS: MULTI</span><span>THREATS: MODELED</span><span>PLAN: SHARED</span></div>
+                  <i class="visual-frame-corner top-left"></i><i class="visual-frame-corner top-right"></i><i class="visual-frame-corner bottom-left"></i><i class="visual-frame-corner bottom-right"></i>
+                </div>
+              </div>
+              <div class="showcase-content">
+                <div class="section-label">// 06 · Mission Software Division</div>
+                <h3>Mission Planning Software</h3>
+                <p>AI-assisted planning tools that help teams coordinate assets, optimize routes, assess constraints, and adapt missions as conditions change.</p>
+                <ul class="feature-list"><li>Multi-asset route optimization</li><li>Threat and terrain-aware planning</li><li>Collaborative plan development</li><li>Rapid in-mission replanning</li></ul>
+                <a class="showcase-link" href="mission-planning.html">Explore Mission Planning →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous solution">←</button>
+          <div class="carousel-navigation">
+            <div class="carousel-progress" aria-hidden="true"><span class="carousel-progress-fill"></span></div>
+            <div class="carousel-dots" role="tablist" aria-label="Select a solution">
+              <button class="carousel-dot" type="button" role="tab" aria-label="Pilot Training Programs" aria-current="true"></button>
+              <button class="carousel-dot" type="button" role="tab" aria-label="Drone and UAV Systems" aria-current="false"></button>
+              <button class="carousel-dot" type="button" role="tab" aria-label="Flight Debriefing Systems" aria-current="false"></button>
+              <button class="carousel-dot" type="button" role="tab" aria-label="C4ISR Command Systems" aria-current="false"></button>
+              <button class="carousel-dot" type="button" role="tab" aria-label="Aviation Laboratories" aria-current="false"></button>
+              <button class="carousel-dot" type="button" role="tab" aria-label="Mission Planning Software" aria-current="false"></button>
+            </div>
+          </div>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next solution">→</button>
+        </div>
+        <p class="carousel-status" aria-live="polite">Showing solution 1 of 6: Pilot Training Programs</p>
       </div>
     </div>
   </section>
