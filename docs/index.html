@@ -601,12 +601,16 @@
     }
 
     .sol-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
       background: var(--dark3);
       padding: 40px 32px;
       position: relative;
       overflow: hidden;
       transition: transform 0.3s;
       border: 1px solid rgba(0, 170, 255, 0.06);
+      cursor: pointer;
     }
 
     .sol-card::before {
@@ -1337,7 +1341,7 @@
     </div>
 
     <div class="solutions-grid">
-      <div class="sol-card">
+      <a href="pilot-training.html" class="sol-card">
         <div class="sol-number">01 //</div>
         <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
           <path d="M24 4L44 14V28C44 38 35 46 24 48C13 46 4 38 4 28V14L24 4Z" />
@@ -1346,10 +1350,10 @@
         <div class="sol-title">Pilot Training<br>Programs</div>
         <p class="sol-desc">Comprehensive civilian and military flight training solutions incorporating next-generation
           simulation technology and real-world mission scenarios.</p>
-        <a href="#" class="sol-link">Learn More →</a>
-      </div>
+        <span class="sol-link">Learn More →</span>
+      </a>
 
-      <div class="sol-card">
+      <a href="drone-uav.html" class="sol-card">
         <div class="sol-number">02 //</div>
         <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
           <path d="M6 32l10-8 8 4 18-16" />
@@ -1360,10 +1364,10 @@
         <div class="sol-title">Drone & UAV<br>Systems</div>
         <p class="sol-desc">State-of-the-art unmanned aerial vehicle platforms for reconnaissance, surveillance, and
           tactical operations in contested environments.</p>
-        <a href="#" class="sol-link">Learn More →</a>
-      </div>
+        <span class="sol-link">Learn More →</span>
+      </a>
 
-      <div class="sol-card">
+      <a href="flight-debriefing.html" class="sol-card">
         <div class="sol-number">03 //</div>
         <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
           <rect x="4" y="8" width="40" height="28" rx="2" />
@@ -1374,10 +1378,10 @@
         <div class="sol-title">Flight Debriefing<br>Systems</div>
         <p class="sol-desc">Integrated post-mission analysis and debriefing platforms that accelerate learning cycles
           and enhance operational readiness for aircrews.</p>
-        <a href="#" class="sol-link">Learn More →</a>
-      </div>
+        <span class="sol-link">Learn More →</span>
+      </a>
 
-      <div class="sol-card">
+      <a href="c4isr.html" class="sol-card">
         <div class="sol-number">04 //</div>
         <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
           <rect x="2" y="10" width="44" height="28" rx="3" />
@@ -1387,10 +1391,10 @@
         <div class="sol-title">C4ISR Command<br>Systems</div>
         <p class="sol-desc">Command, Control, Communications, Computers, Intelligence, Surveillance & Reconnaissance
           solutions delivering battlefield superiority.</p>
-        <a href="#" class="sol-link">Learn More →</a>
-      </div>
+        <span class="sol-link">Learn More →</span>
+      </a>
 
-      <div class="sol-card">
+      <a href="intelligence-surveillance.html" class="sol-card">
         <div class="sol-number">05 //</div>
         <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
           <circle cx="24" cy="24" r="16" />
@@ -1404,10 +1408,10 @@
         <div class="sol-title">Intelligence &<br>Surveillance</div>
         <p class="sol-desc">Multi-domain intelligence fusion platforms enabling real-time situational awareness across
           air, land, sea, space, and cyber domains.</p>
-        <a href="#" class="sol-link">Learn More →</a>
-      </div>
+        <span class="sol-link">Learn More →</span>
+      </a>
 
-      <div class="sol-card">
+      <a href="mission-planning.html" class="sol-card">
         <div class="sol-number">06 //</div>
         <svg class="sol-icon" viewBox="0 0 48 48" fill="none" stroke="#00aaff" stroke-width="1.5">
           <path d="M24 4l6 12h13l-10 8 4 13-13-8-13 8 4-13L5 16h13z" />
@@ -1415,8 +1419,8 @@
         <div class="sol-title">Mission Planning<br>Software</div>
         <p class="sol-desc">Advanced AI-powered mission planning and route optimization tools designed for complex
           multi-asset operations in dynamic threat environments.</p>
-        <a href="#" class="sol-link">Learn More →</a>
-      </div>
+        <span class="sol-link">Learn More →</span>
+      </a>
     </div>
   </section>
 

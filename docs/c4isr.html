@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C4ISR Command Systems — Falkon Aviation</title>
+  <meta name="description" content="Command, Control, Communications, Computers, Intelligence, Surveillance & Reconnaissance solutions by Falkon Aviation and Defence Technologies.">
+  <link rel="icon" type="image/svg+xml" href="assets/Logo_w.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    @font-face { font-family: 'FalkonFont'; src: url('assets/fonts/FalkonFont-Regular.woff2') format('woff2'), url('assets/fonts/FalkonFont-Regular.otf') format('opentype'); font-weight: normal; font-style: normal; font-display: swap; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --blue-core: #00aaff; --blue-bright: #4dd4ff; --blue-dim: #005f99; --steel: #b0c8d8; --white: #e8f4ff; --dark: #040c14; --dark2: #071520; --dark3: #0a1e2e; --glow-sm: 0 0 10px rgba(0,170,255,0.5); }
+    html { scroll-behavior: smooth; }
+    body { background: var(--dark); color: var(--white); font-family: 'Rajdhani', sans-serif; overflow-x: hidden; }
+    .detail-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; padding: 18px 60px; background: rgba(4,12,20,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,170,255,0.1); }
+    .detail-nav .nav-logo img { height: 50px; width: auto; } .detail-nav .nav-logo { text-decoration: none; }
+    .back-link { margin-left: auto; font-family: 'FalkonFont', monospace; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--blue-core); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: all 0.3s; }
+    .back-link:hover { color: var(--blue-bright); gap: 12px; }
+    .page-hero { padding: 160px 60px 80px; text-align: center; background: linear-gradient(180deg, rgba(0,60,120,0.15) 0%, var(--dark) 100%); border-bottom: 1px solid rgba(0,170,255,0.1); position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(0,170,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,170,255,0.06) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+    .page-hero .sol-number { font-family: 'Share Tech Mono', monospace; font-size: 13px; color: rgba(0,170,255,0.5); letter-spacing: 3px; margin-bottom: 16px; }
+    .page-hero h1 { font-family: 'FalkonFont', monospace; font-size: clamp(32px, 5vw, 56px); font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--white); text-shadow: 0 0 30px rgba(0,170,255,0.3); line-height: 1.2; margin-bottom: 20px; }
+    .page-hero p { font-size: 18px; color: var(--steel); max-width: 700px; margin: 0 auto; line-height: 1.7; }
+    .detail-content { max-width: 960px; margin: 0 auto; padding: 80px 40px; }
+    .detail-section { margin-bottom: 64px; }
+    .detail-section h2 { font-family: 'FalkonFont', monospace; font-size: 22px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--white); margin-bottom: 24px; display: flex; align-items: center; gap: 14px; }
+    .detail-section h2::before { content: ''; width: 4px; height: 24px; background: var(--blue-core); box-shadow: var(--glow-sm); flex-shrink: 0; }
+    .detail-section p { font-size: 16px; color: var(--steel); line-height: 1.8; margin-bottom: 16px; }
+    .detail-section ul { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+    .detail-section ul li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; font-weight: 500; color: var(--steel); line-height: 1.6; }
+    .detail-section ul li::before { content: ''; width: 6px; height: 6px; margin-top: 8px; background: var(--blue-core); box-shadow: 0 0 6px var(--blue-core); flex-shrink: 0; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+    .detail-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 40px 0; }
+    .detail-stat { padding: 28px; border: 1px solid rgba(0,170,255,0.12); background: var(--dark3); text-align: center; }
+    .detail-stat strong { display: block; font-family: 'FalkonFont', monospace; font-size: 32px; color: var(--blue-core); text-shadow: var(--glow-sm); margin-bottom: 6px; }
+    .detail-stat span { font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--steel); }
+    .detail-cta { text-align: center; padding: 60px 40px; border-top: 1px solid rgba(0,170,255,0.1); }
+    .detail-cta p { font-size: 18px; color: var(--steel); margin-bottom: 24px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; font-family: 'FalkonFont', monospace; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--dark); background: linear-gradient(135deg, var(--blue-core), var(--blue-bright)); padding: 16px 36px; text-decoration: none; clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%); transition: all 0.3s; box-shadow: var(--glow-sm); }
+    .btn-primary:hover { box-shadow: 0 0 20px rgba(0,170,255,0.6); transform: translateY(-2px); }
+    .detail-footer { background: var(--dark); border-top: 1px solid rgba(0,170,255,0.1); padding: 30px 60px; display: flex; align-items: center; justify-content: space-between; }
+    .detail-footer .copy { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(120,160,190,0.5); letter-spacing: 1px; }
+    @media (max-width: 768px) { .detail-nav { padding: 16px 24px; } .page-hero { padding: 130px 24px 60px; } .detail-content { padding: 50px 24px; } .detail-stats { grid-template-columns: 1fr; } .detail-footer { flex-direction: column; gap: 12px; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<nav class="detail-nav">
+  <a href="index.html" class="nav-logo"><img src="assets/Logo_w.svg" alt="Falkon Aviation"></a>
+  <a href="index.html" class="back-link">← Back to Main</a>
+</nav>
+
+<section class="page-hero">
+  <div class="sol-number">04 // SOLUTION</div>
+  <h1>C4ISR Command Systems</h1>
+  <p>Command, Control, Communications, Computers, Intelligence, Surveillance & Reconnaissance solutions delivering battlefield superiority.</p>
+</section>
+
+<div class="detail-content">
+  <div class="detail-section">
+    <h2>Overview</h2>
+    <p>Falkon's C4ISR Command Systems provide military commanders with a comprehensive, real-time operational picture by fusing data from multiple intelligence sources into a unified decision-support environment.</p>
+    <p>Our systems are designed for interoperability across allied forces, supporting NATO standards while accommodating national-specific requirements and legacy system integration.</p>
+  </div>
+
+  <div class="detail-stats">
+    <div class="detail-stat"><strong>Real-Time</strong><span>Data Fusion</span></div>
+    <div class="detail-stat"><strong>NATO</strong><span>Interoperable</span></div>
+    <div class="detail-stat"><strong>Multi-Domain</strong><span>Coverage</span></div>
+  </div>
+
+  <div class="detail-section">
+    <h2>System Components</h2>
+    <ul>
+      <li>Tactical operations centers with large-format common operational picture displays</li>
+      <li>Automated threat detection and tracking across air, land, and maritime domains</li>
+      <li>Secure voice and data communication networks with anti-jam capabilities</li>
+      <li>Battle management and decision-support tools with AI-assisted analysis</li>
+      <li>Integration gateways for radar, EW, SIGINT, and HUMINT data sources</li>
+      <li>Mobile command posts for forward-deployed headquarters operations</li>
+      <li>Cyber defense monitoring and network security management modules</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h2>Architecture</h2>
+    <p><strong>Command Layer:</strong> Strategic and operational command interfaces providing force-level situational awareness, mission planning tools, and resource allocation optimization.</p>
+    <p><strong>Communication Layer:</strong> Multi-bearer communication infrastructure supporting HF, VHF, UHF, satellite, and IP-based networks with seamless handover and redundancy.</p>
+    <p><strong>Intelligence Layer:</strong> Automated intelligence processing, exploitation, and dissemination (PED) pipeline converting raw sensor data into fused intelligence products for decision-makers.</p>
+  </div>
+</div>
+
+<div class="detail-cta">
+  <p>Interested in our C4ISR Command Systems?</p>
+  <a href="index.html#contact" class="btn-primary">Request Briefing</a>
+</div>
+
+<footer class="detail-footer">
+  <span class="copy">© 2026 FALKON AVIATION AND DEFENCE TECHNOLOGIES. ALL RIGHTS RESERVED.</span>
+  <a href="index.html" class="back-link">← Back to Main</a>
+</footer>
+
+</body>
+</html>
