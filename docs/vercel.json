@@ -1,6 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/intelligence-surveillance",
+      "destination": "/aviation-laboratories",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
