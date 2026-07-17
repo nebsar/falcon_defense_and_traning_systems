@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aviation Laboratories — Falkon Aviation</title>
-  <meta name="description" content="Turnkey aviation laboratories for primary, middle, and high schools, featuring flight simulators, hands-on experiments, and age-appropriate learning sets.">
+  <title>Aviation & Aerospace Innovation Laboratories — Falkon Aviation</title>
+  <meta name="description" content="Turnkey Aviation & Aerospace Innovation Laboratories for K–12 schools, combining flight simulation, drones, engineering, AI, curriculum, teacher training, and ongoing support.">
   <link rel="icon" type="image/svg+xml" href="assets/Logo_w.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -35,6 +35,34 @@
     .detail-section ul { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
     .detail-section ul li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; font-weight: 500; color: var(--steel); line-height: 1.6; }
     .detail-section ul li::before { content: ''; width: 6px; height: 6px; margin-top: 8px; background: var(--blue-core); box-shadow: 0 0 6px var(--blue-core); flex-shrink: 0; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+    .section-intro { max-width: 760px; }
+    .level-grid, .capability-grid, .included-grid { display: grid; gap: 18px; margin-top: 28px; }
+    .level-grid { grid-template-columns: repeat(3, 1fr); }
+    .capability-grid { grid-template-columns: repeat(2, 1fr); }
+    .included-grid { grid-template-columns: repeat(3, 1fr); }
+    .level-card, .capability-card, .included-card { position: relative; overflow: hidden; border: 1px solid rgba(0,170,255,0.14); background: linear-gradient(145deg, rgba(10,30,46,0.92), rgba(5,17,28,0.92)); }
+    .level-card::before, .capability-card::before, .included-card::before { content: ''; position: absolute; top: 0; left: 0; width: 44px; height: 2px; background: var(--blue-core); box-shadow: var(--glow-sm); }
+    .level-card { padding: 30px 26px; }
+    .level-index, .capability-code { display: block; margin-bottom: 18px; font-family: 'Share Tech Mono', monospace; color: var(--blue-core); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+    .level-card h3, .capability-card h3, .included-card h3 { font-family: 'FalkonFont', monospace; color: var(--white); text-transform: uppercase; letter-spacing: 1.5px; line-height: 1.35; }
+    .level-card h3 { min-height: 48px; font-size: 18px; }
+    .level-card .level-age { display: block; margin: 10px 0 18px; color: var(--blue-bright); font-family: 'Share Tech Mono', monospace; font-size: 12px; letter-spacing: 1px; }
+    .level-card p, .capability-card p, .included-card p { margin: 0; color: var(--steel); font-size: 14px; line-height: 1.65; }
+    .level-card ul { gap: 8px; margin-top: 18px; }
+    .level-card ul li { font-size: 13px; }
+    .capability-card { padding: 26px; display: grid; grid-template-columns: 72px 1fr; gap: 20px; align-items: start; }
+    .capability-code { width: 72px; height: 72px; margin: 0; display: grid; place-items: center; border: 1px solid rgba(0,170,255,0.28); background: rgba(0,170,255,0.05); font-size: 15px; letter-spacing: 1px; }
+    .capability-card h3 { font-size: 16px; margin-bottom: 9px; }
+    .included-card { padding: 26px; }
+    .included-card h3 { font-size: 15px; margin-bottom: 12px; }
+    .delivery-path { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 30px; border: 1px solid rgba(0,170,255,0.14); }
+    .delivery-step { min-height: 190px; padding: 28px 22px; background: var(--dark3); border-right: 1px solid rgba(0,170,255,0.12); }
+    .delivery-step:last-child { border-right: 0; }
+    .delivery-step span { display: block; margin-bottom: 22px; color: var(--blue-core); font-family: 'Share Tech Mono', monospace; font-size: 12px; letter-spacing: 2px; }
+    .delivery-step h3 { margin-bottom: 12px; color: var(--white); font-family: 'FalkonFont', monospace; font-size: 15px; letter-spacing: 1.2px; text-transform: uppercase; }
+    .delivery-step p { margin: 0; font-size: 13px; line-height: 1.6; }
+    .support-panel { padding: 34px; border-left: 3px solid var(--blue-core); background: linear-gradient(90deg, rgba(0,170,255,0.1), rgba(10,30,46,0.55)); }
+    .support-panel p:last-child { margin-bottom: 0; }
     .detail-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 40px 0; }
     .detail-stat { padding: 28px; border: 1px solid rgba(0,170,255,0.12); background: var(--dark3); text-align: center; }
     .detail-stat strong { display: block; font-family: 'FalkonFont', monospace; font-size: 32px; color: var(--blue-core); text-shadow: var(--glow-sm); margin-bottom: 6px; }
@@ -45,7 +73,8 @@
     .btn-primary:hover { box-shadow: 0 0 20px rgba(0,170,255,0.6); transform: translateY(-2px); }
     .detail-footer { background: var(--dark); border-top: 1px solid rgba(0,170,255,0.1); padding: 30px 60px; display: flex; align-items: center; justify-content: space-between; }
     .detail-footer .copy { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: rgba(120,160,190,0.5); letter-spacing: 1px; }
-    @media (max-width: 768px) { .detail-nav { padding: 16px 24px; } .page-hero { padding: 130px 24px 60px; } .page-hero h1 { font-size: clamp(22px, 7vw, 27px); letter-spacing: 1px; } .detail-visual { aspect-ratio: 16 / 10; margin: 32px 24px 0; } .detail-visual figcaption { left: 16px; bottom: 14px; } .detail-content { padding: 50px 24px; } .detail-stats { grid-template-columns: 1fr; } .detail-footer { flex-direction: column; gap: 12px; text-align: center; } }
+    @media (max-width: 900px) { .level-grid, .included-grid { grid-template-columns: 1fr; } .capability-grid { grid-template-columns: 1fr; } .delivery-path { grid-template-columns: repeat(2, 1fr); } .delivery-step:nth-child(2) { border-right: 0; } .delivery-step:nth-child(-n+2) { border-bottom: 1px solid rgba(0,170,255,0.12); } }
+    @media (max-width: 768px) { .detail-nav { padding: 16px 24px; } .page-hero { padding: 130px 24px 60px; } .page-hero h1 { font-size: clamp(22px, 7vw, 27px); letter-spacing: 1px; } .detail-visual { aspect-ratio: 16 / 10; margin: 32px 24px 0; } .detail-visual figcaption { left: 16px; bottom: 14px; } .detail-content { padding: 50px 24px; } .detail-stats { grid-template-columns: 1fr; } .capability-card { grid-template-columns: 56px 1fr; gap: 16px; padding: 22px; } .capability-code { width: 56px; height: 56px; font-size: 12px; } .delivery-path { grid-template-columns: 1fr; } .delivery-step, .delivery-step:nth-child(2) { min-height: auto; border-right: 0; border-bottom: 1px solid rgba(0,170,255,0.12); } .delivery-step:last-child { border-bottom: 0; } .support-panel { padding: 26px 22px; } .detail-footer { flex-direction: column; gap: 12px; text-align: center; } }
   </style>
 </head>
 <body>
@@ -57,64 +86,128 @@
 
 <section class="page-hero">
   <div class="sol-number">05 // SOLUTION</div>
-  <h1>Aviation Laboratories</h1>
-  <p>Inspiring the next generation with immersive school laboratories that transform aviation, science, and technology into a hands-on learning experience.</p>
+  <h1>Aviation & Aerospace<br>Innovation Laboratories</h1>
+  <p>A turnkey K–12 learning environment that brings flight, engineering, autonomous systems, and aerospace careers into the classroom.</p>
 </section>
 
 <figure class="detail-visual">
   <img src="assets/solutions/aviation-laboratories.jpg" alt="Students learning aviation concepts with simulators and hands-on laboratory equipment" width="1536" height="1024" decoding="async">
-  <figcaption>LAB-05 // Aviation Learning Environment</figcaption>
+  <figcaption>LAB-05 // Future-Ready Aviation Learning Environment</figcaption>
 </figure>
 
 <div class="detail-content">
   <div class="detail-section">
-    <h2>Overview</h2>
-    <p>Falkon Aviation Laboratories are purpose-built learning environments for primary, middle, and high schools. Each laboratory introduces students to the principles of flight, aircraft systems, navigation, weather, aerodynamics, and aviation careers through a carefully balanced combination of instruction, simulation, and experimentation.</p>
-    <p>More than a specialist classroom, the laboratory is designed to build an aviation mindset: curiosity, discipline, situational awareness, teamwork, structured decision-making, and confidence with technology. It gives students an early connection to aerospace while helping schools create a distinctive educational experience that stands out to families and the wider community.</p>
+    <h2>More Than a STEM Classroom</h2>
+    <p>Falkon Aviation & Aerospace Innovation Laboratories are complete, school-ready learning environments designed for primary, middle, and high school students. Simulation, experimentation, engineering, coding, and real-world aviation scenarios come together in one integrated space.</p>
+    <p>Students do not simply learn about technology—they use it to plan, build, test, fly, communicate, and improve. The result is an aviation mindset built on curiosity, discipline, situational awareness, teamwork, and confident decision-making.</p>
   </div>
 
   <div class="detail-stats">
-    <div class="detail-stat"><strong>3</strong><span>School Levels</span></div>
-    <div class="detail-stat"><strong>Hands-On</strong><span>Learning Model</span></div>
-    <div class="detail-stat"><strong>Modular</strong><span>Laboratory Design</span></div>
+    <div class="detail-stat"><strong>K–12</strong><span>Age-Appropriate Pathways</span></div>
+    <div class="detail-stat"><strong>36</strong><span>Weeks of Curriculum</span></div>
+    <div class="detail-stat"><strong>Turnkey</strong><span>Design to Launch</span></div>
   </div>
 
   <div class="detail-section">
-    <h2>Inside the Laboratory</h2>
-    <ul>
-      <li>Student flight simulator stations for guided take-off, navigation, landing, and mission exercises</li>
-      <li>Interactive aerodynamics tools demonstrating lift, drag, thrust, balance, and control surfaces</li>
-      <li>Aircraft models, component displays, and training aids that make complex systems easy to explore</li>
-      <li>Weather, navigation, and flight-planning activities connecting classroom science with real operations</li>
-      <li>Hands-on experiment kits for building, testing, measuring, and improving student-designed solutions</li>
-      <li>Age-appropriate aviation training sets, lesson materials, and structured classroom activities</li>
-      <li>Collaborative mission scenarios that develop communication, leadership, and teamwork</li>
-    </ul>
+    <h2>Three Learning Pathways</h2>
+    <p class="section-intro">Each laboratory is configured around student age, educational goals, available space, and the level of technical depth your school wants to offer.</p>
+    <div class="level-grid">
+      <article class="level-card">
+        <span class="level-index">Pathway 01</span>
+        <h3>Aviation Discovery Lab</h3>
+        <span class="level-age">Primary School // Ages 6–10</span>
+        <p>A highly visual, story-led introduction to flight that turns natural curiosity into structured discovery.</p>
+        <ul>
+          <li>How aircraft fly</li>
+          <li>Simple aerodynamics experiments</li>
+          <li>Paper aircraft design challenges</li>
+          <li>Introductory mini-drone activities</li>
+          <li>Guided VR flight experiences</li>
+        </ul>
+      </article>
+      <article class="level-card">
+        <span class="level-index">Pathway 02</span>
+        <h3>Flight Academy Lab</h3>
+        <span class="level-age">Middle School</span>
+        <p>Mission-based learning connects science and mathematics with the tools and decisions used in aviation.</p>
+        <ul>
+          <li>Flight simulation and procedures</li>
+          <li>Drone programming</li>
+          <li>Weather and navigation</li>
+          <li>Air traffic control fundamentals</li>
+          <li>Team flight challenges</li>
+        </ul>
+      </article>
+      <article class="level-card">
+        <span class="level-index">Pathway 03</span>
+        <h3>Professional Aviation Lab</h3>
+        <span class="level-age">High School</span>
+        <p>A career-oriented environment for advanced flight, engineering, autonomous systems, and geospatial applications.</p>
+        <ul>
+          <li>Aviation ground-school foundations</li>
+          <li>Advanced multi-screen simulation</li>
+          <li>FPV and autonomous flight systems</li>
+          <li>Mission planning, GIS, and photogrammetry</li>
+          <li>Aerospace engineering and AI</li>
+        </ul>
+      </article>
+    </div>
   </div>
 
   <div class="detail-section">
-    <h2>Learning by School Level</h2>
-    <p><strong>Primary School:</strong> Story-led discovery, simple aircraft construction, introductory simulator sessions, and visual experiments help younger learners understand why aircraft fly while strengthening observation, creativity, and confidence.</p>
-    <p><strong>Middle School:</strong> Students investigate aerodynamics, weather, navigation, aircraft components, and basic flight planning through measurable experiments and team challenges that reinforce science, technology, engineering, and mathematics.</p>
-    <p><strong>High School:</strong> Advanced simulator missions, operational decision-making, aviation systems, route planning, data interpretation, and career-oriented modules give students a deeper view of the aerospace ecosystem and the pathways available within it.</p>
+    <h2>One Lab, Multiple Aviation Domains</h2>
+    <p class="section-intro">A modular ecosystem lets schools combine the domains that best match their academic vision, student profile, and future growth plans.</p>
+    <div class="capability-grid">
+      <article class="capability-card"><span class="capability-code">SIM</span><div><h3>Flight Simulation</h3><p>Configurable training stations for general aviation, commercial flight, and advanced mission scenarios.</p></div></article>
+      <article class="capability-card"><span class="capability-code">UAS</span><div><h3>Drones & Autonomous Systems</h3><p>Mini drones, FPV, fixed-wing, and VTOL platforms support programming, operations, safety, and mission design.</p></div></article>
+      <article class="capability-card"><span class="capability-code">ENG</span><div><h3>Electronics & Engineering</h3><p>Hands-on work with microcontrollers, onboard computers, autopilot systems, sensors, servos, and flight controllers.</p></div></article>
+      <article class="capability-card"><span class="capability-code">AI</span><div><h3>AI & Mission Intelligence</h3><p>Age-appropriate projects introduce computer vision, object detection, mission planning, and intelligent flight systems.</p></div></article>
+      <article class="capability-card"><span class="capability-code">AERO</span><div><h3>Aerospace Design</h3><p>Wind-tunnel experiments, wing design, aerodynamics, propulsion concepts, and introductory rocketry.</p></div></article>
+      <article class="capability-card"><span class="capability-code">ATC</span><div><h3>Air Traffic Control</h3><p>Tower, radar, ADS-B, and radio communication activities develop awareness, precision, and coordinated decision-making.</p></div></article>
+      <article class="capability-card"><span class="capability-code">XR</span><div><h3>Immersive Learning</h3><p>VR hangar, walk-around, maintenance, and emergency scenarios make complex environments accessible and memorable.</p></div></article>
+      <article class="capability-card"><span class="capability-code">MRO</span><div><h3>Aircraft Systems & Maintenance</h3><p>Training components introduce motors, propellers, servos, speed controllers, inspection, and system integration.</p></div></article>
+    </div>
   </div>
 
   <div class="detail-section">
-    <h2>A Complete School Solution</h2>
-    <p>Every Aviation Laboratory is planned around the school's available space, student capacity, learning goals, and desired level of technical depth. Falkon supports the complete journey—from concept and classroom layout to simulator selection, equipment integration, educational content, installation, and instructor orientation.</p>
-    <p>The modular structure allows the laboratory to grow over time. Schools can begin with a focused simulation and experiment package, then expand with additional stations, advanced training sets, or new learning modules as participation increases.</p>
+    <h2>Everything Your School Needs</h2>
+    <p class="section-intro">We deliver an integrated educational environment—not a collection of disconnected equipment.</p>
+    <div class="included-grid">
+      <article class="included-card"><h3>Lab Design & Furniture</h3><p>Space planning, student flow, workstations, collaboration zones, and a visual identity tailored to your school.</p></article>
+      <article class="included-card"><h3>Technology & Equipment</h3><p>Selected simulators, aviation hardware, drone systems, experiment tools, and immersive learning equipment.</p></article>
+      <article class="included-card"><h3>36-Week Curriculum</h3><p>Structured lessons with teacher guides, student materials, presentations, videos, quizzes, and assignments.</p></article>
+      <article class="included-card"><h3>Teacher Preparation</h3><p>A guided instructor training and certification pathway helps educators launch the program with confidence.</p></article>
+      <article class="included-card"><h3>Installation & Launch</h3><p>Equipment integration, system checks, classroom orientation, and launch support for a smooth opening.</p></article>
+      <article class="included-card"><h3>Ongoing Development</h3><p>Technical support, updated learning content, student recognition, and opportunities for new program modules.</p></article>
+    </div>
   </div>
 
   <div class="detail-section">
-    <h2>Educational Impact</h2>
-    <p>Students move beyond passive learning and become active participants: they plan, test, observe, make decisions, evaluate outcomes, and try again. This cycle turns aviation into a practical platform for developing problem-solving, technical literacy, communication, teamwork, and responsible risk awareness.</p>
-    <p>For schools, the laboratory creates a visible center of innovation that enriches the curriculum, supports clubs and project-based learning, and offers a compelling point of difference. It demonstrates a long-term commitment to future-focused education while giving students an experience they will remember.</p>
+    <h2>From Concept to Takeoff</h2>
+    <div class="delivery-path">
+      <article class="delivery-step"><span>01 // DISCOVER</span><h3>Needs Assessment</h3><p>We align student age groups, learning goals, capacity, space, and program ambitions.</p></article>
+      <article class="delivery-step"><span>02 // DESIGN</span><h3>Lab Configuration</h3><p>We develop the learning zones, technology mix, classroom layout, and implementation plan.</p></article>
+      <article class="delivery-step"><span>03 // DEPLOY</span><h3>Install & Prepare</h3><p>We integrate equipment, prepare educators, test systems, and support the program launch.</p></article>
+      <article class="delivery-step"><span>04 // DEVELOP</span><h3>Grow the Program</h3><p>New modules, challenges, clubs, camps, and competitions keep the laboratory active over time.</p></article>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <h2>Built for Lasting Educational Impact</h2>
+    <p>Students move from passive learning to active participation: they plan, test, observe, communicate, make decisions, evaluate outcomes, and try again. Aviation becomes a practical platform for STEM learning, technical literacy, teamwork, leadership, and responsible risk awareness.</p>
+    <p>For schools, the laboratory becomes a visible center of innovation—supporting curriculum enrichment, project-based learning, clubs, summer programs, and student challenges while creating a distinctive experience for families and the wider community.</p>
+  </div>
+
+  <div class="detail-section support-panel">
+    <h2>A Platform That Can Grow</h2>
+    <p>Start with the pathway that fits your current goals, then expand with additional simulator stations, advanced drone platforms, aerospace experiments, geospatial tools, or new curriculum modules as student participation grows.</p>
+    <p>Each configuration is developed around your school. Our team will recommend a practical scope after reviewing your learning objectives, room dimensions, student capacity, and implementation timeline.</p>
   </div>
 </div>
 
 <div class="detail-cta">
-  <p>Ready to bring aviation, science, and technology together in your school?</p>
-  <a href="index.html#contact" class="btn-primary">Plan Your Laboratory</a>
+  <p>Ready to create a future-ready aviation and aerospace experience for your students?</p>
+  <a href="index.html#contact" class="btn-primary">Start Your Lab Consultation</a>
 </div>
 
 <footer class="detail-footer">
